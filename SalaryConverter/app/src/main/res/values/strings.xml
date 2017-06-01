@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">Salary Converter</string>
+
+    <string-array name="home_countries_array">
+        <item>Select your home country</item>
+        <item>Canada</item>
+        <item>United States</item>
+        <item>Mexico</item>
+        <item>Brazil</item>
+        <item>Germany</item>
+        <item>Japan</item>
+        <item>Nigeria</item>
+        <item>Poland</item>
+        <item>England</item>
+        <item>South Korea</item>
+    </string-array>
+
+    <string-array name="job_array">
+        <item>Select your job</item>
+        <item>Software engineer</item>
+        <item>Software tester</item>
+        <item>UI designer</item>
+        <item>Web developer</item>
+        <item>Digital marketing specialist</item>
+        <item>Web designer</item>
+        <item>Mobile developer</item>
+        <item>Game developer</item>
+        <item>UX designer</item>
+        <item>Network administrator</item>
+    </string-array>
+
+    <string-array name="remote_countries_array">
+        <item>Select your remote job location</item>
+        <item>Canada</item>
+        <item>United States</item>
+        <item>Mexico</item>
+        <item>Brazil</item>
+        <item>Germany</item>
+        <item>Japan</item>
+        <item>Nigeria</item>
+        <item>Poland</item>
+        <item>England</item>
+        <item>South Korea</item>
+    </string-array>
+
 </resources>

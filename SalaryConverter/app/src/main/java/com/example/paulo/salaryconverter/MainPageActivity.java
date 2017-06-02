@@ -2,10 +2,14 @@ package com.example.paulo.salaryconverter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class MainPageActivity extends AppCompatActivity {
+    private ImageView mConvertImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +53,19 @@ public class MainPageActivity extends AppCompatActivity {
         rc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         remote_country.setAdapter(rc);
+
+        // Adding the rotate animation to the image after it's clicked by the user.
+        mConvertImage = (ImageView) findViewById(R.id.convert_image);
+        mConvertImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RotateAnimation rotate = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF,
+                        0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                rotate.setDuration(1500);
+                rotate.setRepeatCount(2);
+                mConvertImage.startAnimation(rotate);
+                // after rotating start SalaryInfoActivity
+            }
+        });
     }
 }

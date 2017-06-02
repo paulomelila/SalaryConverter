@@ -1,8 +1,10 @@
 package com.example.paulo.salaryconverter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -54,6 +56,9 @@ public class MainPageActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         remote_country.setAdapter(rc);
 
+        // Creating an intent to start SalaryInfoActivity
+        final Intent salary_info = new Intent(this, SalaryInfoActivity.class);
+
         // Adding the rotate animation to the image after it's clicked by the user.
         mConvertImage = (ImageView) findViewById(R.id.convert_image);
         mConvertImage.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +69,26 @@ public class MainPageActivity extends AppCompatActivity {
                 rotate.setDuration(1500);
                 rotate.setRepeatCount(2);
                 mConvertImage.startAnimation(rotate);
+
                 // after rotating start SalaryInfoActivity
+                rotate.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // not needed
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        startActivity(salary_info);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // not needed
+                    }
+                });
             }
         });
+
     }
 }

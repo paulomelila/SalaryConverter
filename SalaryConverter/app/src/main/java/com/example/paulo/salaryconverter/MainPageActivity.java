@@ -9,48 +9,57 @@ import android.view.animation.RotateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainPageActivity extends AppCompatActivity {
     private ImageView mConvertImage;
+    private TextView mErrorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
+        // Instantiating the string arrays for each Spinner
+        final String[] hc_array = getResources().getStringArray(R.array.home_countries_array);
+        final String[] j_array = getResources().getStringArray(R.array.job_array);
+        final String[] rc_array = getResources().getStringArray(R.array.remote_countries_array);
+
+        // Error text to be displayed if any of the options are not chosen or if the home country
+        // and remote country are the same.
+        mErrorText = (TextView) findViewById(R.id.error_text);
+
         //----------------------------------
         //  HOME COUNTRY SPINNER
         //----------------------------------
-        Spinner home_country = (Spinner) findViewById(R.id.home_countries_spinner);
+        final Spinner home_country = (Spinner) findViewById(R.id.home_countries_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> hc = ArrayAdapter.createFromResource(this,
-                R.array.home_countries_array, android.R.layout.simple_spinner_item);
+                R.array.home_countries_array, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         hc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         home_country.setAdapter(hc);
 
-
         //----------------------------------
         // JOB SPINNER
         //----------------------------------
-        Spinner job = (Spinner) findViewById(R.id.job_spinner);
+        final Spinner job = (Spinner) findViewById(R.id.job_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> j = ArrayAdapter.createFromResource(this,
-                R.array.job_array, android.R.layout.simple_spinner_item);
+                R.array.job_array, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         j.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         job.setAdapter(j);
 
-
         //----------------------------------
         //  REMOTE JOB LOCATION SPINNER
         //----------------------------------
-        Spinner remote_country = (Spinner) findViewById(R.id.remote_countries_spinner);
+        final Spinner remote_country = (Spinner) findViewById(R.id.remote_countries_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> rc = ArrayAdapter.createFromResource(this,
-                R.array.remote_countries_array, android.R.layout.simple_spinner_item);
+                R.array.remote_countries_array, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         rc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -64,31 +73,47 @@ public class MainPageActivity extends AppCompatActivity {
         mConvertImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RotateAnimation rotate = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF,
-                        0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                rotate.setDuration(1500);
-                rotate.setRepeatCount(2);
-                mConvertImage.startAnimation(rotate);
+                String hc = home_country.getSelectedItem().toString();
+                String j = job.getSelectedItem().toString();
+                String rc = remote_country.getSelectedItem().toString();
 
-                // after rotating start SalaryInfoActivity
-                rotate.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                        // not needed
-                    }
+                if (hc.equals(hc_array[0]) || j.equals(j_array[0]) || rc.equals(rc_array[0])) {
+                    mErrorText.setVisibility(View.VISIBLE);
+                    mErrorText.setText(R.string.error_message);
+                }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        startActivity(salary_info);
-                    }
+                else {
+                    if (hc.equals(rc)) {
+                        mErrorText.setVisibility(View.VISIBLE);
+                        mErrorText.setText(R.string.error_same_hc_rc);
+                    } else {
+                        mErrorText.setVisibility(View.INVISIBLE);
+                        RotateAnimation rotate = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF,
+                                0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                        rotate.setDuration(1500);
+                        rotate.setRepeatCount(1);
+                        mConvertImage.startAnimation(rotate);
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                        // not needed
+                        // after rotating start SalaryInfoActivity
+                        rotate.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                // not needed
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                startActivity(salary_info);
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+                                // not needed
+                            }
+                        });
                     }
-                });
+                }
             }
         });
-
     }
 }

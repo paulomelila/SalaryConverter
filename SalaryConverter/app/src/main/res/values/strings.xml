@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Salary Converter</string>
+    <string name="error_message">Please select all options to proceed.</string>
+    <string name="error_same_hc_rc">Your home country and remote country can\'t be the same.</string>
 
     <string-array name="home_countries_array">
         <item>Select your home country</item>
@@ -44,13 +46,12 @@
     </string-array>
 
     <!--< SalaryInfo Activity String >-->
-    <string name="percentDifferenceText">JP 30%more than CA</string>
+    <string name="percentDifferenceText">JP 30% more than CA</string>
     <string name="job">Web Developer</string>
     <string name="rateLabel">Rate</string>
     <string name="rate">1 JP = 100 CAD</string>
-    <string name="averageSalaryLabel">AverageSalary</string>
-    <string name="homeCountryAverageSalary">400JP</string>
-    <string name="remoteCountryAverageSalary">120,000CAD</string>
-
+    <string name="averageSalaryLabel">Average Salary</string>
+    <string name="homeCountryAverageSalary">400 JP</string>
+    <string name="remoteCountryAverageSalary">120,000 CAD</string>
 
 </resources>

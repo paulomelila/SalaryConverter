@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.constraint.ConstraintLayout-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+
     android:orientation="vertical"
     tools:context="com.example.paulo.salaryconverter.SalaryInfoActivity">
 
+        
+    <!--job area-->
     <LinearLayout
-        style="@style/ContentContainerStyle01">
-        
-        <!--job area-->
-        <LinearLayout
-            style="@style/ContentStyle01">
-            <TextView
-                android:id="@+id/job"
-                android:text="@string/job"
-                style="@style/fontMid_Main"
-                android:layout_gravity="center"/>
-        </LinearLayout>
+        style="@style/ContentStyle01">
 
-        <!--First View Img area-->
-        <LinearLayout
-            style="@style/HightRapWidthParentHorizon"
-            android:gravity="center"
-            android:padding="10dp">
-            <ImageView
-                style="@style/WidthHightwRapContent"
-                android:src="@mipmap/country1"/>
+        <TextView
+        android:id="@+id/job"
+        android:text="@string/job"
+        style="@style/fontMid_Main"
+        android:layout_gravity="center_horizontal"
+            />
 
-            <ImageView
-                style="@style/WidthHightwRapContent"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:src="@mipmap/scalexxxhdpi"/>
+    </LinearLayout>
 
-            <ImageView
-                style="@style/WidthHightwRapContent"
-                android:src="@mipmap/country2"/>
-        </LinearLayout>
+    <!--First View Img area-->
+    <LinearLayout
+        style="@style/HightRapWidthParentHorizon"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <ImageView
+            style="@style/WidthHightwRapContent"
+            android:src="@mipmap/japan"/>
+
+        <ImageView
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/scalexxxhdpi"/>
+
+        <ImageView
+            style="@style/WidthHightwRapContent"
+            android:src="@mipmap/canada"/>
+
+    </LinearLayout>
         
-        <!--PercentDifference area-->
-        <LinearLayout
-            style="@style/HightRapWidthParentVertical">
-            <TextView
-                android:id="@+id/percentDifferenceTex"
-                android:text="@string/percentDifferenceText"
-                style="@style/fontBig"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        
+    <!--PercentDifference area-->
+    <LinearLayout
+        style="@style/HightRapWidthParentVertical">
+        <TextView
+            android:id="@+id/percentDifferenceTex"
+            android:text="@string/percentDifferenceText"
+            style="@style/fontBig"
+            android:layout_gravity="center"/>
     </LinearLayout>
     
     
@@ -64,6 +65,7 @@
         <LinearLayout
             style="@style/HightRapWidthParent">
             <TextView
+                android:id="@+id/rate_label"
                 android:text="@string/rateLabel"
                 style="@style/fontSmall_Sub2"/>
         </LinearLayout>
@@ -80,9 +82,7 @@
         </LinearLayout>
 
     </LinearLayout>
-    
 
-    
     <LinearLayout
         style="@style/ContentContainerStyle01">
         
@@ -91,23 +91,28 @@
             style="@style/HightRapWidthParent">
 
             <TextView
+                android:id="@+id/avg_salary"
                 android:text="@string/averageSalaryLabel"
-                style="@style/fontSmall_Sub1"/>
+                style="@style/fontSmall_Sub1"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
         <LinearLayout
             style="@style/HightRapWidthParentHorizon"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:layout_marginBottom="5dp">
 
             <ImageView
                 style="@style/WidthHightwRapContent"
-                android:src="@mipmap/country1"/>
+                android:src="@mipmap/japan"/>
 
             <TextView
                 android:id="@+id/homeCountryAverageSalary"
                 android:text="@string/homeCountryAverageSalary"
                 android:layout_gravity="center_vertical"
-                style="@style/fontMid_Main"/>
+                style="@style/fontMid_Main"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,16 +121,16 @@
 
             <ImageView
                 style="@style/WidthHightwRapContent"
-                android:src="@mipmap/country2"/>
+                android:src="@mipmap/canada"/>
 
             <TextView
                 android:id="@+id/emotCountryAverageSalary"
                 android:layout_gravity="center_vertical"
                 style="@style/fontMid_Main"
-                android:text="@string/remoteCountryAverageSalary"/>
+                android:text="@string/remoteCountryAverageSalary"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"/>
         </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
-
-    <!--</android.support.constraint.ConstraintLayout>-->

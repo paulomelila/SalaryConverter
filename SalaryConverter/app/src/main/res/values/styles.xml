@@ -8,4 +8,91 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-</resources>
+    <!-- kaori add -->
+    <style name="WidthHightwRapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="HightRapWidthParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="HightRapWidthParentHorizon">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="HightRapWidthParentVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ContentContainerStyle01">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingLeft">70dp</item>
+        <item name="android:paddingRight">70dp</item>
+        <item name="android:paddingTop">30dp</item>
+    </style>
+
+    <style name="ContentContainerStyle02">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">70dp</item>
+        <item name="android:paddingRight">70dp</item>
+        <item name="android:paddingTop">15dp</item>
+    </style>
+
+    <style name="ContentStyle01">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--Font Style-->
+    <style name="fontBig">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorFontMain</item>
+    </style>
+
+    <style name="fontMid_Main">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorFontMain</item>
+    </style>
+
+    <style name="fontMid_Sub2">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorFontSub2</item>
+    </style>
+
+    <style name="fontSmall_Sub1">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorFontSub1</item>
+    </style>
+
+    <style name="fontSmall_Sub2">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorFontSub2</item>
+    </style>
+
+
+
+    </resources>

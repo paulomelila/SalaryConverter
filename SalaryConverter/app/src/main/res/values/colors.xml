@@ -3,4 +3,11 @@
     <color name="colorPrimary">#21c6da</color>
     <color name="colorPrimaryDark">#cfd0d1</color>
     <color name="colorAccent">#FF4081</color>
+    <!--add kaori-->
+    <color name="colorBackGround">#CFD0D1</color>
+    <color name="colorFontMain">#5A5B5C</color>
+    <color name="colorFontSub1">#ADB3B7</color>
+    <color name="colorFontSub2">#fff</color>
+
+
 </resources>

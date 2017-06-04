@@ -30,6 +30,7 @@
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/home_country_flag"
             style="@style/WidthHightwRapContent"
             android:src="@mipmap/japan"/>
 
@@ -41,6 +42,7 @@
             android:src="@mipmap/scalexxxhdpi"/>
 
         <ImageView
+            android:id="@+id/remote_country_flag"
             style="@style/WidthHightwRapContent"
             android:src="@mipmap/canada"/>
 
@@ -103,6 +105,7 @@
             android:layout_marginBottom="5dp">
 
             <ImageView
+                android:id="@+id/hc_flag_salary"
                 style="@style/WidthHightwRapContent"
                 android:src="@mipmap/japan"/>
 
@@ -120,6 +123,7 @@
             android:paddingTop="10dp">
 
             <ImageView
+                android:id="@+id/rc_flag_salary"
                 style="@style/WidthHightwRapContent"
                 android:src="@mipmap/canada"/>
 

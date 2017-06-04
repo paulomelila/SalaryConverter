@@ -65,17 +65,14 @@ public class MainPageActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         remote_country.setAdapter(rc);
 
-        // Creating an intent to start SalaryInfoActivity
-        final Intent salary_info = new Intent(this, SalaryInfoActivity.class);
-
         // Adding the rotate animation to the image after it's clicked by the user.
         mConvertImage = (ImageView) findViewById(R.id.convert_image);
         mConvertImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hc = home_country.getSelectedItem().toString();
-                String j = job.getSelectedItem().toString();
-                String rc = remote_country.getSelectedItem().toString();
+                final String hc = home_country.getSelectedItem().toString();
+                final String j = job.getSelectedItem().toString();
+                final String rc = remote_country.getSelectedItem().toString();
 
                 if (hc.equals(hc_array[0]) || j.equals(j_array[0]) || rc.equals(rc_array[0])) {
                     mErrorText.setVisibility(View.VISIBLE);
@@ -103,6 +100,12 @@ public class MainPageActivity extends AppCompatActivity {
 
                             @Override
                             public void onAnimationEnd(Animation animation) {
+                                // Creating an intent to start SalaryInfoActivity and send the user's
+                                // choices to the next page.
+                                Intent salary_info = new Intent(MainPageActivity.this, SalaryInfoActivity.class);
+                                salary_info.putExtra("Home country", hc);
+                                salary_info.putExtra("Job", j);
+                                salary_info.putExtra("Remote country", rc);
                                 startActivity(salary_info);
                             }
 

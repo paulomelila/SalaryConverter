@@ -54,4 +54,52 @@
     <string name="homeCountryAverageSalary">400 JP</string>
     <string name="remoteCountryAverageSalary">120,000 CAD</string>
 
+    <string-array name="conversion_rates_array">
+        <item>1 USD = 1.35 CAD</item>
+        <item>1 CAD = 13.85 MXN</item>
+        <item>1 CAD = 2.41 BRL</item>
+        <item>1 EUR = 1.52 CAD</item>
+        <item>1 CAD = 81.98 JPY</item>
+        <item>1 CAD = 233.40 NGN</item>
+        <item>1 CAD = 2.75 PLN</item>
+        <item>1 GBP = 1.74 CAD</item>
+        <item>1 CAD = 829.34 KRW</item>
+        <item>1 USD = 18.68 MXN</item>
+        <item>1 USD = 3.25 BRL</item>
+        <item>1 EUR = 1.13 USD</item>
+        <item>1 USD = 110.52 JPY</item>
+        <item>1 USD = 314.75 NGN</item>
+        <item>1 USD = 3.71 PLN</item>
+        <item>1 GBP = 1.29 USD</item>
+        <item>1 USD = 1118.40 KRW</item>
+        <item>1 BRL = 5.75 MXN</item>
+        <item>1 EUR = 21.13 MXN</item>
+        <item>1 MXN = 5.89 JPY</item>
+        <item>1 MXN = 16.80 NGN</item>
+        <item>1 PLN = 5.05 MXN</item>
+        <item>1 GBP = 24.11 MXN</item>
+        <item>1 MXN = 59.67 KRW</item>
+        <item>1 EUR = 3.66 BRL</item>
+        <item>1 BRL = 34.00 JPY</item>
+        <item>1 BRL = 96.96 NGN</item>
+        <item>1 BRL = 1.14 PLN</item>
+        <item>1 GBP = 4.18 BRL</item>
+        <item>1 BRL = 344.29 KRW</item>
+        <item>1 EUR = 124.49 JPY</item>
+        <item>1 EUR = 354.90 NGN</item>
+        <item>1 EUR = 4.18 PLN</item>
+        <item>1 GBP = 1.14 EUR</item>
+        <item>1 EUR = 1260.39 KRW</item>
+        <item>1 JPY = 2.85 NGN</item>
+        <item>1 PLN = 29.74 JPY</item>
+        <item>1 GBP = 142.12 JPY</item>
+        <item>1 JPY = 10.12 KRW</item>
+        <item>1 PLN = 84.80 NGN</item>
+        <item>1 GBP = 404.99 NGN</item>
+        <item>1 NGN = 3.55 KRW</item>
+        <item>1 GBP = 4.78 PLN</item>
+        <item>1 PLN = 301.16 KRW</item>
+        <item>1 GBP = 1438.08 KRW</item>
+    </string-array>
+
 </resources>

@@ -128,7 +128,7 @@
                 android:src="@mipmap/canada"/>
 
             <TextView
-                android:id="@+id/emotCountryAverageSalary"
+                android:id="@+id/remoteCountryAverageSalary"
                 android:layout_gravity="center_vertical"
                 style="@style/fontMid_Main"
                 android:text="@string/remoteCountryAverageSalary"

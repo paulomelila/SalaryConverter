@@ -3,6 +3,7 @@
     <string name="error_message">Please select all options to proceed.</string>
     <string name="error_same_hc_rc">Your home country and remote country can\'t be the same.</string>
 
+<!--//HOME COUNTRY OPTIONS-->
     <string-array name="home_countries_array">
         <item>Select your home country</item>
         <item>Canada</item>
@@ -17,6 +18,7 @@
         <item>South Korea</item>
     </string-array>
 
+<!--//JOB OPTIONS-->
     <string-array name="job_array">
         <item>Select your job</item>
         <item>Software engineer</item>
@@ -31,6 +33,7 @@
         <item>Network administrator</item>
     </string-array>
 
+<!--//REMOTE COUNTRY OPTIONS-->
     <string-array name="remote_countries_array">
         <item>Select your remote job location</item>
         <item>Canada</item>
@@ -45,15 +48,16 @@
         <item>South Korea</item>
     </string-array>
 
-    <!--< SalaryInfo Activity String >-->
+<!--< SalaryInfo Activity Strings >-->
     <string name="percentDifferenceText">JP 30% more than CA</string>
     <string name="job">Web Developer</string>
     <string name="rateLabel">Rate</string>
     <string name="rate">1 JP = 100 CAD</string>
-    <string name="averageSalaryLabel">Average Salary</string>
+    <string name="averageSalaryLabel">Average Yearly Salary</string>
     <string name="homeCountryAverageSalary">400 JP</string>
     <string name="remoteCountryAverageSalary">120,000 CAD</string>
 
+<!--//CONVERSION RATES-->
     <string-array name="conversion_rates_array">
         <item>1 USD = 1.35 CAD</item>
         <item>1 CAD = 13.85 MXN</item>
@@ -102,7 +106,7 @@
         <item>1 GBP = 1438.08 KRW</item>
     </string-array>
 
-<!--//AVERAGE SALARY-->
+<!--//AVERAGE YEARLY SALARY-->
     <string-array name="average_salary_canada">
         <item>70,009 CAD</item>
         <item>52,052 CAD</item>
@@ -128,6 +132,45 @@
         <item>73,800 USD</item>
         <item>56,576 USD</item>
     </string-array>
+    
+    <string-array name="average_salary_mexico">
+        <item>255,000 MXN</item>
+        <item>276,500 MXN</item>
+        <item>287,340 MXN</item>
+        <item>354,000 MXN</item>
+        <item>480,000 MXN</item>
+        <item>150,000 MXN</item>
+        <item>300,000 MXN</item>
+        <item>180,000 MXN</item>
+        <item>365,000 MXN</item>
+        <item>360,000 MXN</item>
+    </string-array>
+    
+    <string-array name="average_salary_brazil">
+        <item>93,893 BRL</item>
+        <item>78,657 BRL</item>
+        <item>48,342 BRL</item>
+        <item>60,560 BRL</item>
+        <item>50,194 BRL</item>
+        <item>46,928 BRL</item>
+        <item>60,789 BRL</item>
+        <item>40,934 BRL</item>
+        <item>50,229 BRL</item>
+        <item>80,994 BRL</item>
+    </string-array>
+    
+    <string-array name="average_salary_germany">
+        <item>54,000 EUR</item>
+        <item>49,000 EUR</item>
+        <item>40,500 EUR</item>
+        <item>50,000 EUR</item>
+        <item>53,000 EUR</item>
+        <item>44,300 EUR</item>
+        <item>48,802 EUR</item>
+        <item>38,500 EUR</item>
+        <item>51,000 EUR</item>
+        <item>55,000 EUR</item>
+    </string-array>
 
     <string-array name="average_salary_japan">
         <item>5,750,000 JPY</item>
@@ -140,20 +183,6 @@
         <item>5,180,000 JPY</item>
         <item>5,000,000 JPY</item>
         <item>6,450,000 JPY</item>
-    </string-array>
-
-
-    <string-array name="average_salary_brazil">
-        <item>93,893 BRL</item>
-        <item>78,657 BRL</item>
-        <item>48,342 BRL</item>
-        <item>60,560 BRL</item>
-        <item>50,194 BRL</item>
-        <item>46,928 BRL</item>
-        <item>60,789 BRL</item>
-        <item>40,934 BRL</item>
-        <item>50,229 BRL</item>
-        <item>80,994 BRL</item>
     </string-array>
 
     <string-array name="average_salary_nigeria">
@@ -180,32 +209,6 @@
         <item>48,000 PLN</item>
         <item>49,000 PLN</item>
         <item>60,000 PLN</item>
-    </string-array>
-
-    <string-array name="average_salary_mexico">
-        <item>255,000 MXN</item>
-        <item>276,500 MXN</item>
-        <item>287,340 MXN</item>
-        <item>354,000 MXN</item>
-        <item>480,000 MXN</item>
-        <item>150,000 MXN</item>
-        <item>300,000 MXN</item>
-        <item>180,000 MXN</item>
-        <item>365,000 MXN</item>
-        <item>360,000 MXN</item>
-    </string-array>
-
-    <string-array name="average_salary_germany">
-        <item>54,000 EUR</item>
-        <item>49,000 EUR</item>
-        <item>40,500 EUR</item>
-        <item>50,000 EUR</item>
-        <item>53,000 EUR</item>
-        <item>44,300 EUR</item>
-        <item>48,802 EUR</item>
-        <item>38,500 EUR</item>
-        <item>51,000 EUR</item>
-        <item>55,000 EUR</item>
     </string-array>
 
     <string-array name="average_salary_england">

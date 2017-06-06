@@ -14,7 +14,20 @@ public class SalaryInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salary_info);
 
+        // Getting the content of the string array for conversion rates
         String[] rates_array = getResources().getStringArray(R.array.conversion_rates_array);
+
+        // Getting the content of the string arrays for average salary
+        String[] avg_salary_can = getResources().getStringArray(R.array.average_salary_canada);
+        String[] avg_salary_usa = getResources().getStringArray(R.array.average_salary_unitedStates);
+        String[] avg_salary_mex = getResources().getStringArray(R.array.average_salary_mexico);
+        String[] avg_salary_bra = getResources().getStringArray(R.array.average_salary_brazil);
+        String[] avg_salary_ger = getResources().getStringArray(R.array.average_salary_germany);
+        String[] avg_salary_jap = getResources().getStringArray(R.array.average_salary_japan);
+        String[] avg_salary_nig = getResources().getStringArray(R.array.average_salary_nigeria);
+        String[] avg_salary_pol = getResources().getStringArray(R.array.average_salary_poland);
+        String[] avg_salary_eng = getResources().getStringArray(R.array.average_salary_england);
+        String[] avg_salary_kor = getResources().getStringArray(R.array.average_salary_southKorea);
 
         // Widgets
         ImageView home_country_flag = (ImageView) findViewById(R.id.home_country_flag);
@@ -300,6 +313,628 @@ public class SalaryInfoActivity extends AppCompatActivity {
         }
         if (home.equals("England") && remote.equals("South Korea") || home.equals("South Korea") && remote.equals("England")) {
             mRateText.setText(rates_array[44]);
+        }
+
+        //  AVERAGE SALARY TEXT
+
+        // CANADA
+        if (home.equals("Canada") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_can[0]);
+        }
+        if (remote.equals("Canada") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_can[0]);
+        }
+        if (home.equals("Canada") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_can[1]);
+        }
+        if (remote.equals("Canada") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_can[1]);
+        }
+        if (home.equals("Canada") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_can[2]);
+        }
+        if (remote.equals("Canada") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_can[2]);
+        }
+        if (home.equals("Canada") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_can[3]);
+        }
+        if (remote.equals("Canada") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_can[3]);
+        }
+        if (home.equals("Canada") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_can[4]);
+        }
+        if (remote.equals("Canada") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_can[4]);
+        }
+        if (home.equals("Canada") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_can[5]);
+        }
+        if (remote.equals("Canada") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_can[5]);
+        }
+        if (home.equals("Canada") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_can[6]);
+        }
+        if (remote.equals("Canada") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_can[6]);
+        }
+        if (home.equals("Canada") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_can[7]);
+        }
+        if (remote.equals("Canada") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_can[7]);
+        }
+        if (home.equals("Canada") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_can[8]);
+        }
+        if (remote.equals("Canada") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_can[8]);
+        }
+        if (home.equals("Canada") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_can[9]);
+        }
+        if (remote.equals("Canada") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_can[9]);
+        }
+
+        // UNITED STATES
+        if (home.equals("United States") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_usa[0]);
+        }
+        if (remote.equals("United States") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_usa[0]);
+        }
+        if (home.equals("United States") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_usa[1]);
+        }
+        if (remote.equals("United States") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_usa[1]);
+        }
+        if (home.equals("United States") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_usa[2]);
+        }
+        if (remote.equals("United States") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_usa[2]);
+        }
+        if (home.equals("United States") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_usa[3]);
+        }
+        if (remote.equals("United States") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_usa[3]);
+        }
+        if (home.equals("United States") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_usa[4]);
+        }
+        if (remote.equals("United States") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_usa[4]);
+        }
+        if (home.equals("United States") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_usa[5]);
+        }
+        if (remote.equals("United States") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_usa[5]);
+        }
+        if (home.equals("United States") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_usa[6]);
+        }
+        if (remote.equals("United States") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_usa[6]);
+        }
+        if (home.equals("United States") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_usa[7]);
+        }
+        if (remote.equals("United States") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_usa[7]);
+        }
+        if (home.equals("United States") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_usa[8]);
+        }
+        if (remote.equals("United States") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_usa[8]);
+        }
+        if (home.equals("United States") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_usa[9]);
+        }
+        if (remote.equals("United States") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_usa[9]);
+        }
+
+        // MEXICO
+        if (home.equals("Mexico") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_mex[0]);
+        }
+        if (remote.equals("Mexico") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_mex[0]);
+        }
+        if (home.equals("Mexico") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_mex[1]);
+        }
+        if (remote.equals("Mexico") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_mex[1]);
+        }
+        if (home.equals("Mexico") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_mex[2]);
+        }
+        if (remote.equals("Mexico") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_mex[2]);
+        }
+        if (home.equals("Mexico") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_mex[3]);
+        }
+        if (remote.equals("Mexico") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_mex[3]);
+        }
+        if (home.equals("Mexico") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_mex[4]);
+        }
+        if (remote.equals("Mexico") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_mex[4]);
+        }
+        if (home.equals("Mexico") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_mex[5]);
+        }
+        if (remote.equals("Mexico") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_mex[5]);
+        }
+        if (home.equals("Mexico") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_mex[6]);
+        }
+        if (remote.equals("Mexico") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_mex[6]);
+        }
+        if (home.equals("Mexico") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_mex[7]);
+        }
+        if (remote.equals("Mexico") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_mex[7]);
+        }
+        if (home.equals("Mexico") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_mex[8]);
+        }
+        if (remote.equals("Mexico") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_mex[8]);
+        }
+        if (home.equals("Mexico") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_mex[9]);
+        }
+        if (remote.equals("Mexico") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_mex[9]);
+        }
+
+        // BRAZIL
+        if (home.equals("Brazil") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_bra[0]);
+        }
+        if (remote.equals("Brazil") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_bra[0]);
+        }
+        if (home.equals("Brazil") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_bra[1]);
+        }
+        if (remote.equals("Brazil") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_bra[1]);
+        }
+        if (home.equals("Brazil") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_bra[2]);
+        }
+        if (remote.equals("Brazil") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_bra[2]);
+        }
+        if (home.equals("Brazil") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_bra[3]);
+        }
+        if (remote.equals("Brazil") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_bra[3]);
+        }
+        if (home.equals("Brazil") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_bra[4]);
+        }
+        if (remote.equals("Brazil") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_bra[4]);
+        }
+        if (home.equals("Brazil") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_bra[5]);
+        }
+        if (remote.equals("Brazil") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_bra[5]);
+        }
+        if (home.equals("Brazil") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_bra[6]);
+        }
+        if (remote.equals("Brazil") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_bra[6]);
+        }
+        if (home.equals("Brazil") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_bra[7]);
+        }
+        if (remote.equals("Brazil") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_bra[7]);
+        }
+        if (home.equals("Brazil") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_bra[8]);
+        }
+        if (remote.equals("Brazil") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_bra[8]);
+        }
+        if (home.equals("Brazil") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_bra[9]);
+        }
+        if (remote.equals("Brazil") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_bra[9]);
+        }
+
+        // GERMANY
+        if (home.equals("Germany") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_ger[0]);
+        }
+        if (remote.equals("Germany") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_ger[0]);
+        }
+        if (home.equals("Germany") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_ger[1]);
+        }
+        if (remote.equals("Germany") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_ger[1]);
+        }
+        if (home.equals("Germany") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_ger[2]);
+        }
+        if (remote.equals("Germany") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_ger[2]);
+        }
+        if (home.equals("Germany") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_ger[3]);
+        }
+        if (remote.equals("Germany") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_ger[3]);
+        }
+        if (home.equals("Germany") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_ger[4]);
+        }
+        if (remote.equals("Germany") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_ger[4]);
+        }
+        if (home.equals("Germany") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_ger[5]);
+        }
+        if (remote.equals("Germany") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_ger[5]);
+        }
+        if (home.equals("Germany") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_ger[6]);
+        }
+        if (remote.equals("Germany") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_ger[6]);
+        }
+        if (home.equals("Germany") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_ger[7]);
+        }
+        if (remote.equals("Germany") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_ger[7]);
+        }
+        if (home.equals("Germany") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_ger[8]);
+        }
+        if (remote.equals("Germany") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_ger[8]);
+        }
+        if (home.equals("Germany") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_ger[9]);
+        }
+        if (remote.equals("Germany") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_ger[9]);
+        }
+
+        // JAPAN
+        if (home.equals("Japan") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_jap[0]);
+        }
+        if (remote.equals("Japan") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_jap[0]);
+        }
+        if (home.equals("Japan") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_jap[1]);
+        }
+        if (remote.equals("Japan") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_jap[1]);
+        }
+        if (home.equals("Japan") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_jap[2]);
+        }
+        if (remote.equals("Japan") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_jap[2]);
+        }
+        if (home.equals("Japan") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_jap[3]);
+        }
+        if (remote.equals("Japan") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_jap[3]);
+        }
+        if (home.equals("Japan") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_jap[4]);
+        }
+        if (remote.equals("Japan") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_jap[4]);
+        }
+        if (home.equals("Japan") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_jap[5]);
+        }
+        if (remote.equals("Japan") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_jap[5]);
+        }
+        if (home.equals("Japan") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_jap[6]);
+        }
+        if (remote.equals("Japan") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_jap[6]);
+        }
+        if (home.equals("Japan") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_jap[7]);
+        }
+        if (remote.equals("Japan") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_jap[7]);
+        }
+        if (home.equals("Japan") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_jap[8]);
+        }
+        if (remote.equals("Japan") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_jap[8]);
+        }
+        if (home.equals("Japan") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_jap[9]);
+        }
+        if (remote.equals("Japan") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_jap[9]);
+        }
+
+        // NIGERIA
+        if (home.equals("Nigeria") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_nig[0]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_nig[0]);
+        }
+        if (home.equals("Nigeria") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_nig[1]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_nig[1]);
+        }
+        if (home.equals("Nigeria") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_nig[2]);
+        }
+        if (remote.equals("Nigeria") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_nig[2]);
+        }
+        if (home.equals("Nigeria") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_nig[3]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_nig[3]);
+        }
+        if (home.equals("Nigeria") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_nig[4]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_nig[4]);
+        }
+        if (home.equals("Nigeria") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_nig[5]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_nig[5]);
+        }
+        if (home.equals("Nigeria") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_nig[6]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_nig[6]);
+        }
+        if (home.equals("Nigeria") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_nig[7]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_nig[7]);
+        }
+        if (home.equals("Nigeria") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_nig[8]);
+        }
+        if (remote.equals("Nigeria") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_nig[8]);
+        }
+        if (home.equals("Nigeria") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_nig[9]);
+        }
+        if (remote.equals("Nigeria") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_nig[9]);
+        }
+
+        // POLAND
+        if (home.equals("Poland") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_pol[0]);
+        }
+        if (remote.equals("Poland") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_pol[0]);
+        }
+        if (home.equals("Poland") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_pol[1]);
+        }
+        if (remote.equals("Poland") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_pol[1]);
+        }
+        if (home.equals("Poland") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_pol[2]);
+        }
+        if (remote.equals("Poland") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_pol[2]);
+        }
+        if (home.equals("Poland") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_pol[3]);
+        }
+        if (remote.equals("Poland") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_pol[3]);
+        }
+        if (home.equals("Poland") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_pol[4]);
+        }
+        if (remote.equals("Poland") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_pol[4]);
+        }
+        if (home.equals("Poland") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_pol[5]);
+        }
+        if (remote.equals("Poland") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_pol[5]);
+        }
+        if (home.equals("Poland") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_pol[6]);
+        }
+        if (remote.equals("Poland") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_pol[6]);
+        }
+        if (home.equals("Poland") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_pol[7]);
+        }
+        if (remote.equals("Poland") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_pol[7]);
+        }
+        if (home.equals("Poland") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_pol[8]);
+        }
+        if (remote.equals("Poland") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_pol[8]);
+        }
+        if (home.equals("Poland") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_pol[9]);
+        }
+        if (remote.equals("Poland") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_pol[9]);
+        }
+
+        // ENGLAND
+        if (home.equals("England") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_eng[0]);
+        }
+        if (remote.equals("England") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_eng[0]);
+        }
+        if (home.equals("England") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_eng[1]);
+        }
+        if (remote.equals("England") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_eng[1]);
+        }
+        if (home.equals("England") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_eng[2]);
+        }
+        if (remote.equals("England") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_eng[2]);
+        }
+        if (home.equals("England") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_eng[3]);
+        }
+        if (remote.equals("England") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_eng[3]);
+        }
+        if (home.equals("England") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_eng[4]);
+        }
+        if (remote.equals("England") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_eng[4]);
+        }
+        if (home.equals("England") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_eng[5]);
+        }
+        if (remote.equals("England") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_eng[5]);
+        }
+        if (home.equals("England") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_eng[6]);
+        }
+        if (remote.equals("England") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_eng[6]);
+        }
+        if (home.equals("England") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_eng[7]);
+        }
+        if (remote.equals("England") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_eng[7]);
+        }
+        if (home.equals("England") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_eng[8]);
+        }
+        if (remote.equals("England") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_eng[8]);
+        }
+        if (home.equals("England") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_eng[9]);
+        }
+        if (remote.equals("England") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_eng[9]);
+        }
+
+        // SOUTH KOREA
+        if (home.equals("South Korea") && job.equals("Software engineer")) {
+            mHc_salary.setText(avg_salary_kor[0]);
+        }
+        if (remote.equals("South Korea") && job.equals("Software engineer")) {
+            mRc_salary.setText(avg_salary_kor[0]);
+        }
+        if (home.equals("South Korea") && job.equals("Software tester")) {
+            mHc_salary.setText(avg_salary_kor[1]);
+        }
+        if (remote.equals("South Korea") && job.equals("Software tester")) {
+            mRc_salary.setText(avg_salary_kor[1]);
+        }
+        if (home.equals("South Korea") && job.equals("UI designer")) {
+            mHc_salary.setText(avg_salary_kor[2]);
+        }
+        if (remote.equals("South Korea") && job.equals("UI designer")) {
+            mRc_salary.setText(avg_salary_kor[2]);
+        }
+        if (home.equals("South Korea") && job.equals("Web developer")) {
+            mHc_salary.setText(avg_salary_kor[3]);
+        }
+        if (remote.equals("South Korea") && job.equals("Web developer")) {
+            mRc_salary.setText(avg_salary_kor[3]);
+        }
+        if (home.equals("South Korea") && job.equals("Digital marketing specialist")) {
+            mHc_salary.setText(avg_salary_kor[4]);
+        }
+        if (remote.equals("South Korea") && job.equals("Digital marketing specialist")) {
+            mRc_salary.setText(avg_salary_kor[4]);
+        }
+        if (home.equals("South Korea") && job.equals("Web designer")) {
+            mHc_salary.setText(avg_salary_kor[5]);
+        }
+        if (remote.equals("South Korea") && job.equals("Web designer")) {
+            mRc_salary.setText(avg_salary_kor[5]);
+        }
+        if (home.equals("South Korea") && job.equals("Mobile developer")) {
+            mHc_salary.setText(avg_salary_kor[6]);
+        }
+        if (remote.equals("South Korea") && job.equals("Mobile developer")) {
+            mRc_salary.setText(avg_salary_kor[6]);
+        }
+        if (home.equals("South Korea") && job.equals("Game developer")) {
+            mHc_salary.setText(avg_salary_kor[7]);
+        }
+        if (remote.equals("South Korea") && job.equals("Game developer")) {
+            mRc_salary.setText(avg_salary_kor[7]);
+        }
+        if (home.equals("South Korea") && job.equals("UX designer")) {
+            mHc_salary.setText(avg_salary_kor[8]);
+        }
+        if (remote.equals("South Korea") && job.equals("UX designer")) {
+            mRc_salary.setText(avg_salary_kor[8]);
+        }
+        if (home.equals("South Korea") && job.equals("Network administrator")) {
+            mHc_salary.setText(avg_salary_kor[9]);
+        }
+        if (remote.equals("South Korea") && job.equals("Network administrator")) {
+            mRc_salary.setText(avg_salary_kor[9]);
         }
     }
 }

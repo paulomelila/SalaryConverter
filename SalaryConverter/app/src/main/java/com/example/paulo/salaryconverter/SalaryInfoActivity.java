@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SalaryInfoActivity extends AppCompatActivity {
+    private PercentDifference percent = new PercentDifference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +136,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         if (job.equals("Network administrator")) {
             mJob.setText(job);
         }
-        
+
         // REMOTE COUNTRY FLAGS
         if (remote.equals("Canada")) {
             remote_country_flag.setImageResource(R.mipmap.canada);
@@ -936,5 +937,1597 @@ public class SalaryInfoActivity extends AppCompatActivity {
         if (remote.equals("South Korea") && job.equals("Network administrator")) {
             mRc_salary.setText(avg_salary_kor[9]);
         }
+
+// PERCENT DIFFERENCE TEXT
+
+        // SOFTWARE ENGINEER
+        if (job.equals("Software engineer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(70009, 80825, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 255000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 93893, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(70009, 54000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 5250000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 3000000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 90500, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(70009, 34142, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(70009, 45000000, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 70009, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 255000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 93893, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80825, 54000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 5250000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 3000000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 90500, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80825, 34142, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80825, 45000000, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 80825, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 70009, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 93893, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 54000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(255000, 5250000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(255000, 3000000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 90500, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(255000, 34142, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(255000, 45000000, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(93893, 80825, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(93893, 70009, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(93893, 255000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(93893, 54000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(93893, 5250000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(93893, 3000000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(93893, 90500, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(93893, 34142, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(93893, 45000000, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 80825, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 70009, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 255000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 93893, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 5250000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 3000000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 90500, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 34142, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 45000000, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 80825, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 70009, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 255000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 93893, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 54000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5250000, 3000000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 90500, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5250000, 34142, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5250000, 45000000, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 80825, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 70009, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 255000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 93893, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 54000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 5250000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 90500, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3000000, 34142, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3000000, 45000000, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(90500, 80825, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(90500, 70009, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(90500, 255000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(90500, 93893, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(90500, 54000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(90500, 5250000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(90500, 3000000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(90500, 34142, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(90500, 45000000, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 80825, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 70009, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 255000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 93893, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 54000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 5250000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 3000000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 90500, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(34142, 45000000, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 80825, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 70009, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 255000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 93893, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 54000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 5250000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 3000000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 90500, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(45000000, 34142, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // SOFTWARE TESTER
+        if (job.equals("Software tester")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52052, 55678, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 276500, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 78657, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52052, 49000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 3700000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 2000000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 50000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52052, 24950, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52052, 40000000, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 52052, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 276500, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 78657, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(55678, 49000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 3700000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 2000000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 50000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(55678, 24950, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55678, 40000000, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 55678, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 52052, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 78657, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 49000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(276500, 3700000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(276500, 2000000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 50000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(276500, 24950, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(276500, 40000000, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(78657, 55678, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(78657, 52052, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(78657, 276500, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(78657, 49000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(78657, 3700000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(78657, 2000000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(78657, 50000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(78657, 24950, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(78657, 40000000, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 55678, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 52052, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 276500, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 78657, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 3700000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 2000000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 50000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 24950, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 40000000, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 55678, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 52052, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 276500, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 78657, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 49000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3700000, 2000000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 50000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3700000, 24950, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3700000, 40000000, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 55678, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 52052, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 276500, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 78657, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 49000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 3700000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 50000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 24950, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2000000, 40000000, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 55678, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 52052, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 276500, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 78657, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 49000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 3700000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 2000000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 24950, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 40000000, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 55678, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 52052, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 276500, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 78657, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 49000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 3700000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 2000000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 50000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24950, 40000000, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 55678, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 52052, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 276500, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 78657, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 49000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 3700000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 2000000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 50000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40000000, 24950, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // UI DESIGNER
+        if (job.equals("UI designer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54488, 64760, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 287340, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 48342, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54488, 40500, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 3730000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 4000000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 54000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54488, 29117, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54488, 43000000, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 54488, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 287340, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 48342, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64760, 40500, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 3730000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 4000000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 54000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64760, 29117, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(64760, 43000000, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 64760, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 54488, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 48342, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 40500, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(287340, 3730000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(287340, 4000000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 54000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(287340, 29117, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(287340, 43000000, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48342, 64760, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48342, 54488, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48342, 287340, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48342, 40500, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48342, 3730000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48342, 4000000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48342, 54000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48342, 29117, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48342, 43000000, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 64760, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 54488, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 287340, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 48342, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 3730000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 4000000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 54000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40500, 29117, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40500, 43000000, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 64760, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 54488, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 287340, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 48342, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 40500, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3730000, 4000000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 54000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3730000, 29117, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3730000, 43000000, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 64760, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 54488, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 287340, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 48342, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 40500, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 3730000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 54000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4000000, 29117, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(4000000, 43000000, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 64760, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 54488, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 287340, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 48342, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 40500, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 3730000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 4000000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(54000, 29117, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(54000, 43000000, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 64760, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 54488, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 287340, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 48342, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 40500, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 3730000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 4000000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 54000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(29117, 43000000, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 64760, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 54488, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 287340, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 48342, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 40500, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 3730000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 4000000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 54000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43000000, 29117, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // WEB DEVELOPER
+        if (job.equals("Web developer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49758, 57702, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 354000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 60560, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49758, 50000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 3763765, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 2350000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 57000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49758, 24833, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49758, 39045640, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 49758, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 354000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 60560, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57702, 50000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 3763765, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 2350000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 57000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57702, 24833, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57702, 39045640, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 57702, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 49758, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 60560, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 50000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(354000, 3763765, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(354000, 2350000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 57000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(354000, 24833, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(354000, 39045640, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60560, 57702, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60560, 49758, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60560, 354000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60560, 50000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60560, 3763765, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60560, 2350000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60560, 57000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60560, 24833, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60560, 39045640, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 57702, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 49758, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 354000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 60560, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 3763765, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 2350000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 57000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50000, 24833, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50000, 39045640, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 57702, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 49758, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 354000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 60560, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 50000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3763765, 2350000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 57000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3763765, 24833, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3763765, 39045640, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 57702, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 49758, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 354000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 60560, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 50000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 3763765, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 57000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 24833, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2350000, 39045640, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 57702, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 49758, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 354000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 60560, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 50000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 3763765, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 2350000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 24833, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 39045640, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 57702, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 49758, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 354000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 60560, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 50000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 3763765, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 2350000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 57000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(24833, 39045640, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 57702, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 49758, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 354000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 60560, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 50000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 3763765, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 2350000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 57000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(39045640, 24833, 1438.08, home, remote));
+                }
+            }
+        }
+
+//======================================================================================================================
+
+
+        // DIGITAL MARKETING SPECIALIST
+        if (job.equals("Digital marketing specialist")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49533, 44663, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 480000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 50194, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49533, 53000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 3400000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 1500000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 52000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49533, 26450, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49533, 38000000, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 49533, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 480000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 50194, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44663, 53000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 3400000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 1500000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 52000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44663, 26450, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44663, 38000000, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 44663, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 49533, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 50194, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 53000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(480000, 3400000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(480000, 1500000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 52000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(480000, 26450, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(480000, 38000000, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50194, 44663, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50194, 49533, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50194, 480000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50194, 53000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50194, 3400000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50194, 1500000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50194, 52000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50194, 26450, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50194, 38000000, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 44663, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 49533, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 480000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 50194, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 3400000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 1500000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 52000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(53000, 26450, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(53000, 38000000, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 44663, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 49533, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 480000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 50194, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 53000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3400000, 1500000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 52000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3400000, 26450, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3400000, 38000000, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 44663, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 49533, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 480000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 50194, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 53000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 3400000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 52000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1500000, 26450, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(1500000, 38000000, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52000, 44663, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52000, 49533, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52000, 480000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52000, 50194, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52000, 53000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52000, 3400000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52000, 1500000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(52000, 26450, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(52000, 38000000, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 44663, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 49533, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 480000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 50194, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 53000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 3400000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 1500000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 52000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(26450, 38000000, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 44663, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 49533, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 480000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 50194, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 53000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 3400000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 1500000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 52000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38000000, 26450, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+
+
+
     }
 }

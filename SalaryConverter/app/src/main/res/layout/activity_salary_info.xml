@@ -52,6 +52,7 @@
     <LinearLayout
         style="@style/HightRapWidthParentVertical">
         <TextView
+            android:textAlignment="center"
             android:id="@+id/percentDifferenceTex"
             android:text="@string/percentDifferenceText"
             style="@style/fontBig"

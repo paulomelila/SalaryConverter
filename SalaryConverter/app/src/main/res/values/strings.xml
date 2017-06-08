@@ -173,7 +173,7 @@
     </string-array>
 
     <string-array name="average_salary_japan">
-        <item>5,750,000 JPY</item>
+        <item>5,250,000 JPY</item>
         <item>3,700,000 JPY</item>
         <item>3,730,000 JPY</item>
         <item>3,763,765 JPY</item>
@@ -201,7 +201,7 @@
     <string-array name="average_salary_poland">
         <item>90,500 PLN</item>
         <item>50,000 PLN</item>
-        <item>55,000 PLN</item>
+        <item>54,000 PLN</item>
         <item>57,000 PLN</item>
         <item>52,000 PLN</item>
         <item>57,000 PLN</item>

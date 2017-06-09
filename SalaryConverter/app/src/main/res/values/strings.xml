@@ -108,7 +108,7 @@
 
 <!--//AVERAGE YEARLY SALARY-->
     <string-array name="average_salary_canada">
-        <item>70,009 CAD</item>
+        <item>40000</item>
         <item>52,052 CAD</item>
         <item>54,488 CAD</item>
         <item>49,758 CAD</item>

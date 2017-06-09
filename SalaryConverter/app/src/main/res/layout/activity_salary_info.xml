@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +14,7 @@
     android:orientation="vertical"
     tools:context="com.example.paulo.salaryconverter.SalaryInfoActivity">
 
-        
+
     <!--job area-->
     <LinearLayout
         style="@style/ContentStyle01">
@@ -47,7 +52,7 @@
             android:src="@mipmap/canada"/>
 
     </LinearLayout>
-        
+
     <!--PercentDifference area-->
     <LinearLayout
         style="@style/HightRapWidthParentVertical">
@@ -58,12 +63,12 @@
             style="@style/fontBig"
             android:layout_gravity="center"/>
     </LinearLayout>
-    
-    
+
+
     <LinearLayout
         style="@style/ContentContainerStyle02"
         android:background="@color/colorBackGround">
-        
+
         <!--Rate area-->
         <LinearLayout
             style="@style/HightRapWidthParent">
@@ -88,7 +93,7 @@
 
     <LinearLayout
         style="@style/ContentContainerStyle01">
-        
+
         <!--Average salary area-->
         <LinearLayout
             style="@style/HightRapWidthParent">
@@ -139,3 +144,5 @@
 
     </LinearLayout>
 </LinearLayout>
+
+</ScrollView>

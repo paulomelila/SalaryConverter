@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class SalaryInfoActivity extends AppCompatActivity {
@@ -14,6 +16,8 @@ public class SalaryInfoActivity extends AppCompatActivity {
     private ArrayList<Job> mJobBank = new ArrayList<>();
     private ArrayList<Salary> mSalaryBank = new ArrayList<>();
     private PercentDifference percent = new PercentDifference();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         String[] avg_salary_pol = getResources().getStringArray(R.array.average_salary_poland);
         String[] avg_salary_eng = getResources().getStringArray(R.array.average_salary_england);
         String[] avg_salary_kor = getResources().getStringArray(R.array.average_salary_southKorea);
+
 
         // Widgets
         ImageView home_country_flag = (ImageView) findViewById(R.id.home_country_flag);
@@ -82,8 +87,17 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
         for (int i = 0; i < mCountryBank.size(); i++) {
             Country country = mCountryBank.get(i);
+            for ( int j = 0; j < mJobBank.size(); j++)
+                //Job job = mJobBank.get(j);
+
+
+
             // SET HOME COUNTRY IMG
             if (country.getCountryName().equals(home)) {
+                for ( int j = 0; j < mJobBank.size(); j++) {
+                    Job job = mJobBank.get(j);
+                }
+
                 home_country_flag.setImageResource(country.getCountryImg());
                 hc_flag_salary.setImageResource(country.getCountryImg());
             }
@@ -114,10 +128,24 @@ public class SalaryInfoActivity extends AppCompatActivity {
             }
         }
 
+
+        for (int c = 0; c < avg_salary_can.length; c++) {
+            double cad = Double.parseDouble(avg_salary_can[c]);
+            DecimalFormat fmt = new DecimalFormat("#,###");
+            String cad_salary = fmt.format(cad);
+            if (home.equals("Canada")) {
+                mHc_salary.setText(cad_salary);
+            }
+            if (remote.equals("Canada")) {
+                mRc_salary.setText(cad_salary);
+            }
+        }
+
+
         // Setting the average salary for each job depending on the country
 
         // CANADA
-        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[0] + " CAD", new Job("Software engineer")));
         mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[1], new Job("Software tester")));
         mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[2], new Job("UI designer")));
         mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[3], new Job("Web developer")));

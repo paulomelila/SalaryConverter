@@ -2,12 +2,17 @@ package com.example.paulo.salaryconverter;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class SalaryInfoActivity extends AppCompatActivity {
+    private ArrayList<Country> mCountryBank = new ArrayList<>();
+    private ArrayList<Job> mJobBank = new ArrayList<>();
+    private ArrayList<Salary> mSalaryBank = new ArrayList<>();
     private PercentDifference percent = new PercentDifference();
 
     @Override
@@ -63,121 +68,180 @@ public class SalaryInfoActivity extends AppCompatActivity {
         String job = b.getString("Job");
         String remote = b.getString("Remote country");
 
-        // HOME COUNTRY FLAGS
-        if (home.equals("Canada")) {
-            home_country_flag.setImageResource(R.mipmap.canada);
-            hc_flag_salary.setImageResource(R.mipmap.canada);
-        }
-        if (home.equals("United States")) {
-            home_country_flag.setImageResource(R.mipmap.usa);
-            hc_flag_salary.setImageResource(R.mipmap.usa);
-        }
-        if (home.equals("Mexico")) {
-            home_country_flag.setImageResource(R.mipmap.mexico);
-            hc_flag_salary.setImageResource(R.mipmap.mexico);
-        }
-        if (home.equals("Brazil")) {
-            home_country_flag.setImageResource(R.mipmap.brazil);
-            hc_flag_salary.setImageResource(R.mipmap.brazil);
-        }
-        if (home.equals("Germany")) {
-            home_country_flag.setImageResource(R.mipmap.germany);
-            hc_flag_salary.setImageResource(R.mipmap.germany);
-        }
-        if (home.equals("Japan")) {
-            home_country_flag.setImageResource(R.mipmap.japan);
-            hc_flag_salary.setImageResource(R.mipmap.japan);
-        }
-        if (home.equals("Nigeria")) {
-            home_country_flag.setImageResource(R.mipmap.nigeria);
-            hc_flag_salary.setImageResource(R.mipmap.nigeria);
-        }
-        if (home.equals("Poland")) {
-            home_country_flag.setImageResource(R.mipmap.poland);
-            hc_flag_salary.setImageResource(R.mipmap.poland);
-        }
-        if (home.equals("England")) {
-            home_country_flag.setImageResource(R.mipmap.england);
-            hc_flag_salary.setImageResource(R.mipmap.england);
-        }
-        if (home.equals("South Korea")) {
-            home_country_flag.setImageResource(R.mipmap.south_korea);
-            hc_flag_salary.setImageResource(R.mipmap.south_korea);
+        // Setting countries flags
+        mCountryBank.add(new Country("Canada", R.mipmap.canada));
+        mCountryBank.add(new Country("United States", R.mipmap.usa));
+        mCountryBank.add(new Country("Mexico", R.mipmap.mexico));
+        mCountryBank.add(new Country("Germany", R.mipmap.germany));
+        mCountryBank.add(new Country("Japan", R.mipmap.japan));
+        mCountryBank.add(new Country("Nigeria", R.mipmap.nigeria));
+        mCountryBank.add(new Country("Poland", R.mipmap.poland));
+        mCountryBank.add(new Country("England", R.mipmap.england));
+        mCountryBank.add(new Country("South Korea", R.mipmap.south_korea));
+        mCountryBank.add(new Country("Brazil", R.mipmap.brazil));
+
+        for (int i = 0; i < mCountryBank.size(); i++) {
+            Country country = mCountryBank.get(i);
+            // SET HOME COUNTRY IMG
+            if (country.getCountryName().equals(home)) {
+                home_country_flag.setImageResource(country.getCountryImg());
+                hc_flag_salary.setImageResource(country.getCountryImg());
+            }
+            // SET REMOTE COUNTRY IMG
+            if (country.getCountryName().equals(remote)) {
+                remote_country_flag.setImageResource(country.getCountryImg());
+                rc_flag_salary.setImageResource(country.getCountryImg());
+            }
         }
 
-        // JOB TEXT
-        if (job.equals("Software engineer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Software tester")) {
-            mJob.setText(job);
-        }
-        if (job.equals("UI designer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Web developer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Digital marketing specialist")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Web designer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Mobile developer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Game developer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("UX designer")) {
-            mJob.setText(job);
-        }
-        if (job.equals("Network administrator")) {
-            mJob.setText(job);
+        // Setting job text
+        mJobBank.add(new Job("Software engineer"));
+        mJobBank.add(new Job("Software tester"));
+        mJobBank.add(new Job("UI designer"));
+        mJobBank.add(new Job("Web developer"));
+        mJobBank.add(new Job("Digital marketing specialist"));
+        mJobBank.add(new Job("Web designer"));
+        mJobBank.add(new Job("Mobile developer"));
+        mJobBank.add(new Job("Game developer"));
+        mJobBank.add(new Job("UX designer"));
+        mJobBank.add(new Job("Network administrator"));
+
+        for (int j = 0; j < mJobBank.size(); j++) {
+            Job searchJob = mJobBank.get(j);
+            // SET JOB
+            if (searchJob.getJobName().equals(job)) {
+                mJob.setText(job);
+            }
         }
 
-        // REMOTE COUNTRY FLAGS
-        if (remote.equals("Canada")) {
-            remote_country_flag.setImageResource(R.mipmap.canada);
-            rc_flag_salary.setImageResource(R.mipmap.canada);
+        // Setting the average salary for each job depending on the country
+
+        // CANADA
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Canada", R.mipmap.canada), avg_salary_can[9], new Job("Network administrator")));
+        // UNITED STATES
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("United States", R.mipmap.usa), avg_salary_usa[9], new Job("Network administrator")));
+        // MEXICO
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Mexico", R.mipmap.mexico), avg_salary_mex[9], new Job("Network administrator")));
+        // BRAZIL
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Brazil", R.mipmap.brazil), avg_salary_bra[9], new Job("Network administrator")));
+        // GERMANY
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Germany", R.mipmap.germany), avg_salary_ger[9], new Job("Network administrator")));
+        // JAPAN
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Japan", R.mipmap.japan), avg_salary_jap[9], new Job("Network administrator")));
+        // NIGERIA
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Nigeria", R.mipmap.nigeria), avg_salary_nig[9], new Job("Network administrator")));
+        // POLAND
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("Poland", R.mipmap.poland), avg_salary_pol[9], new Job("Network administrator")));
+        // ENGLAND
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("England", R.mipmap.england), avg_salary_eng[9], new Job("Network administrator")));
+        // SOUTH KOREA
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[0], new Job("Software engineer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[1], new Job("Software tester")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[2], new Job("UI designer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[3], new Job("Web developer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[4], new Job("Digital marketing specialist")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[5], new Job("Web designer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[6], new Job("Mobile developer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[7], new Job("Game developer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[8], new Job("UX designer")));
+        mSalaryBank.add(new Salary(new Country("South Korea", R.mipmap.south_korea), avg_salary_kor[9], new Job("Network administrator")));
+
+        for (int a = 0; a < mSalaryBank.size(); a++) {
+            Salary averageSalary = mSalaryBank.get(a);
+            if (averageSalary.salaryJobName.getJobName().equals(job)) {
+                if (averageSalary.salaryCountry.getCountryName().equals(home)) {
+                    // SET AVERAGE SALARY TEXT
+                    mHc_salary.setText(mSalaryBank.get(a).getAverageSalary());
+                }
+                else if(averageSalary.salaryCountry.getCountryName().equals(remote)) {
+                    // SET AVERAGE SALARY TEXT
+                    mRc_salary.setText(mSalaryBank.get(a).getAverageSalary());
+                }
+            }
         }
-        if (remote.equals("United States")) {
-            remote_country_flag.setImageResource(R.mipmap.usa);
-            rc_flag_salary.setImageResource(R.mipmap.usa);
-        }
-        if (remote.equals("Mexico")) {
-            remote_country_flag.setImageResource(R.mipmap.mexico);
-            rc_flag_salary.setImageResource(R.mipmap.mexico);
-        }
-        if (remote.equals("Brazil")) {
-            remote_country_flag.setImageResource(R.mipmap.brazil);
-            rc_flag_salary.setImageResource(R.mipmap.brazil);
-        }
-        if (remote.equals("Germany")) {
-            remote_country_flag.setImageResource(R.mipmap.germany);
-            rc_flag_salary.setImageResource(R.mipmap.germany);
-        }
-        if (remote.equals("Japan")) {
-            remote_country_flag.setImageResource(R.mipmap.japan);
-            rc_flag_salary.setImageResource(R.mipmap.japan);
-        }
-        if (remote.equals("Nigeria")) {
-            remote_country_flag.setImageResource(R.mipmap.nigeria);
-            rc_flag_salary.setImageResource(R.mipmap.nigeria);
-        }
-        if (remote.equals("Poland")) {
-            remote_country_flag.setImageResource(R.mipmap.poland);
-            rc_flag_salary.setImageResource(R.mipmap.poland);
-        }
-        if (remote.equals("England")) {
-            remote_country_flag.setImageResource(R.mipmap.england);
-            rc_flag_salary.setImageResource(R.mipmap.england);
-        }
-        if (remote.equals("South Korea")) {
-            remote_country_flag.setImageResource(R.mipmap.south_korea);
-            rc_flag_salary.setImageResource(R.mipmap.south_korea);
-        }
+
+
 
         // CONVERSION RATE TEXT
         if (home.equals("Canada") && remote.equals("United States") || home.equals("United States") && remote.equals("Canada")) {
@@ -316,627 +380,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(rates_array[44]);
         }
 
-        //  AVERAGE SALARY TEXT
 
-        // CANADA
-        if (home.equals("Canada") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_can[0]);
-        }
-        if (remote.equals("Canada") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_can[0]);
-        }
-        if (home.equals("Canada") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_can[1]);
-        }
-        if (remote.equals("Canada") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_can[1]);
-        }
-        if (home.equals("Canada") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_can[2]);
-        }
-        if (remote.equals("Canada") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_can[2]);
-        }
-        if (home.equals("Canada") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_can[3]);
-        }
-        if (remote.equals("Canada") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_can[3]);
-        }
-        if (home.equals("Canada") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_can[4]);
-        }
-        if (remote.equals("Canada") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_can[4]);
-        }
-        if (home.equals("Canada") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_can[5]);
-        }
-        if (remote.equals("Canada") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_can[5]);
-        }
-        if (home.equals("Canada") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_can[6]);
-        }
-        if (remote.equals("Canada") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_can[6]);
-        }
-        if (home.equals("Canada") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_can[7]);
-        }
-        if (remote.equals("Canada") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_can[7]);
-        }
-        if (home.equals("Canada") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_can[8]);
-        }
-        if (remote.equals("Canada") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_can[8]);
-        }
-        if (home.equals("Canada") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_can[9]);
-        }
-        if (remote.equals("Canada") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_can[9]);
-        }
-
-        // UNITED STATES
-        if (home.equals("United States") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_usa[0]);
-        }
-        if (remote.equals("United States") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_usa[0]);
-        }
-        if (home.equals("United States") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_usa[1]);
-        }
-        if (remote.equals("United States") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_usa[1]);
-        }
-        if (home.equals("United States") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_usa[2]);
-        }
-        if (remote.equals("United States") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_usa[2]);
-        }
-        if (home.equals("United States") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_usa[3]);
-        }
-        if (remote.equals("United States") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_usa[3]);
-        }
-        if (home.equals("United States") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_usa[4]);
-        }
-        if (remote.equals("United States") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_usa[4]);
-        }
-        if (home.equals("United States") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_usa[5]);
-        }
-        if (remote.equals("United States") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_usa[5]);
-        }
-        if (home.equals("United States") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_usa[6]);
-        }
-        if (remote.equals("United States") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_usa[6]);
-        }
-        if (home.equals("United States") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_usa[7]);
-        }
-        if (remote.equals("United States") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_usa[7]);
-        }
-        if (home.equals("United States") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_usa[8]);
-        }
-        if (remote.equals("United States") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_usa[8]);
-        }
-        if (home.equals("United States") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_usa[9]);
-        }
-        if (remote.equals("United States") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_usa[9]);
-        }
-
-        // MEXICO
-        if (home.equals("Mexico") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_mex[0]);
-        }
-        if (remote.equals("Mexico") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_mex[0]);
-        }
-        if (home.equals("Mexico") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_mex[1]);
-        }
-        if (remote.equals("Mexico") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_mex[1]);
-        }
-        if (home.equals("Mexico") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_mex[2]);
-        }
-        if (remote.equals("Mexico") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_mex[2]);
-        }
-        if (home.equals("Mexico") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_mex[3]);
-        }
-        if (remote.equals("Mexico") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_mex[3]);
-        }
-        if (home.equals("Mexico") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_mex[4]);
-        }
-        if (remote.equals("Mexico") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_mex[4]);
-        }
-        if (home.equals("Mexico") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_mex[5]);
-        }
-        if (remote.equals("Mexico") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_mex[5]);
-        }
-        if (home.equals("Mexico") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_mex[6]);
-        }
-        if (remote.equals("Mexico") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_mex[6]);
-        }
-        if (home.equals("Mexico") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_mex[7]);
-        }
-        if (remote.equals("Mexico") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_mex[7]);
-        }
-        if (home.equals("Mexico") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_mex[8]);
-        }
-        if (remote.equals("Mexico") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_mex[8]);
-        }
-        if (home.equals("Mexico") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_mex[9]);
-        }
-        if (remote.equals("Mexico") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_mex[9]);
-        }
-
-        // BRAZIL
-        if (home.equals("Brazil") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_bra[0]);
-        }
-        if (remote.equals("Brazil") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_bra[0]);
-        }
-        if (home.equals("Brazil") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_bra[1]);
-        }
-        if (remote.equals("Brazil") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_bra[1]);
-        }
-        if (home.equals("Brazil") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_bra[2]);
-        }
-        if (remote.equals("Brazil") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_bra[2]);
-        }
-        if (home.equals("Brazil") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_bra[3]);
-        }
-        if (remote.equals("Brazil") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_bra[3]);
-        }
-        if (home.equals("Brazil") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_bra[4]);
-        }
-        if (remote.equals("Brazil") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_bra[4]);
-        }
-        if (home.equals("Brazil") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_bra[5]);
-        }
-        if (remote.equals("Brazil") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_bra[5]);
-        }
-        if (home.equals("Brazil") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_bra[6]);
-        }
-        if (remote.equals("Brazil") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_bra[6]);
-        }
-        if (home.equals("Brazil") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_bra[7]);
-        }
-        if (remote.equals("Brazil") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_bra[7]);
-        }
-        if (home.equals("Brazil") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_bra[8]);
-        }
-        if (remote.equals("Brazil") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_bra[8]);
-        }
-        if (home.equals("Brazil") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_bra[9]);
-        }
-        if (remote.equals("Brazil") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_bra[9]);
-        }
-
-        // GERMANY
-        if (home.equals("Germany") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_ger[0]);
-        }
-        if (remote.equals("Germany") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_ger[0]);
-        }
-        if (home.equals("Germany") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_ger[1]);
-        }
-        if (remote.equals("Germany") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_ger[1]);
-        }
-        if (home.equals("Germany") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_ger[2]);
-        }
-        if (remote.equals("Germany") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_ger[2]);
-        }
-        if (home.equals("Germany") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_ger[3]);
-        }
-        if (remote.equals("Germany") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_ger[3]);
-        }
-        if (home.equals("Germany") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_ger[4]);
-        }
-        if (remote.equals("Germany") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_ger[4]);
-        }
-        if (home.equals("Germany") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_ger[5]);
-        }
-        if (remote.equals("Germany") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_ger[5]);
-        }
-        if (home.equals("Germany") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_ger[6]);
-        }
-        if (remote.equals("Germany") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_ger[6]);
-        }
-        if (home.equals("Germany") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_ger[7]);
-        }
-        if (remote.equals("Germany") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_ger[7]);
-        }
-        if (home.equals("Germany") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_ger[8]);
-        }
-        if (remote.equals("Germany") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_ger[8]);
-        }
-        if (home.equals("Germany") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_ger[9]);
-        }
-        if (remote.equals("Germany") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_ger[9]);
-        }
-
-        // JAPAN
-        if (home.equals("Japan") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_jap[0]);
-        }
-        if (remote.equals("Japan") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_jap[0]);
-        }
-        if (home.equals("Japan") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_jap[1]);
-        }
-        if (remote.equals("Japan") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_jap[1]);
-        }
-        if (home.equals("Japan") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_jap[2]);
-        }
-        if (remote.equals("Japan") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_jap[2]);
-        }
-        if (home.equals("Japan") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_jap[3]);
-        }
-        if (remote.equals("Japan") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_jap[3]);
-        }
-        if (home.equals("Japan") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_jap[4]);
-        }
-        if (remote.equals("Japan") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_jap[4]);
-        }
-        if (home.equals("Japan") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_jap[5]);
-        }
-        if (remote.equals("Japan") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_jap[5]);
-        }
-        if (home.equals("Japan") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_jap[6]);
-        }
-        if (remote.equals("Japan") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_jap[6]);
-        }
-        if (home.equals("Japan") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_jap[7]);
-        }
-        if (remote.equals("Japan") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_jap[7]);
-        }
-        if (home.equals("Japan") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_jap[8]);
-        }
-        if (remote.equals("Japan") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_jap[8]);
-        }
-        if (home.equals("Japan") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_jap[9]);
-        }
-        if (remote.equals("Japan") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_jap[9]);
-        }
-
-        // NIGERIA
-        if (home.equals("Nigeria") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_nig[0]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_nig[0]);
-        }
-        if (home.equals("Nigeria") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_nig[1]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_nig[1]);
-        }
-        if (home.equals("Nigeria") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_nig[2]);
-        }
-        if (remote.equals("Nigeria") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_nig[2]);
-        }
-        if (home.equals("Nigeria") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_nig[3]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_nig[3]);
-        }
-        if (home.equals("Nigeria") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_nig[4]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_nig[4]);
-        }
-        if (home.equals("Nigeria") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_nig[5]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_nig[5]);
-        }
-        if (home.equals("Nigeria") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_nig[6]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_nig[6]);
-        }
-        if (home.equals("Nigeria") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_nig[7]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_nig[7]);
-        }
-        if (home.equals("Nigeria") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_nig[8]);
-        }
-        if (remote.equals("Nigeria") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_nig[8]);
-        }
-        if (home.equals("Nigeria") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_nig[9]);
-        }
-        if (remote.equals("Nigeria") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_nig[9]);
-        }
-
-        // POLAND
-        if (home.equals("Poland") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_pol[0]);
-        }
-        if (remote.equals("Poland") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_pol[0]);
-        }
-        if (home.equals("Poland") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_pol[1]);
-        }
-        if (remote.equals("Poland") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_pol[1]);
-        }
-        if (home.equals("Poland") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_pol[2]);
-        }
-        if (remote.equals("Poland") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_pol[2]);
-        }
-        if (home.equals("Poland") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_pol[3]);
-        }
-        if (remote.equals("Poland") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_pol[3]);
-        }
-        if (home.equals("Poland") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_pol[4]);
-        }
-        if (remote.equals("Poland") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_pol[4]);
-        }
-        if (home.equals("Poland") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_pol[5]);
-        }
-        if (remote.equals("Poland") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_pol[5]);
-        }
-        if (home.equals("Poland") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_pol[6]);
-        }
-        if (remote.equals("Poland") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_pol[6]);
-        }
-        if (home.equals("Poland") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_pol[7]);
-        }
-        if (remote.equals("Poland") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_pol[7]);
-        }
-        if (home.equals("Poland") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_pol[8]);
-        }
-        if (remote.equals("Poland") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_pol[8]);
-        }
-        if (home.equals("Poland") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_pol[9]);
-        }
-        if (remote.equals("Poland") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_pol[9]);
-        }
-
-        // ENGLAND
-        if (home.equals("England") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_eng[0]);
-        }
-        if (remote.equals("England") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_eng[0]);
-        }
-        if (home.equals("England") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_eng[1]);
-        }
-        if (remote.equals("England") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_eng[1]);
-        }
-        if (home.equals("England") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_eng[2]);
-        }
-        if (remote.equals("England") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_eng[2]);
-        }
-        if (home.equals("England") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_eng[3]);
-        }
-        if (remote.equals("England") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_eng[3]);
-        }
-        if (home.equals("England") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_eng[4]);
-        }
-        if (remote.equals("England") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_eng[4]);
-        }
-        if (home.equals("England") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_eng[5]);
-        }
-        if (remote.equals("England") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_eng[5]);
-        }
-        if (home.equals("England") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_eng[6]);
-        }
-        if (remote.equals("England") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_eng[6]);
-        }
-        if (home.equals("England") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_eng[7]);
-        }
-        if (remote.equals("England") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_eng[7]);
-        }
-        if (home.equals("England") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_eng[8]);
-        }
-        if (remote.equals("England") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_eng[8]);
-        }
-        if (home.equals("England") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_eng[9]);
-        }
-        if (remote.equals("England") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_eng[9]);
-        }
-
-        // SOUTH KOREA
-        if (home.equals("South Korea") && job.equals("Software engineer")) {
-            mHc_salary.setText(avg_salary_kor[0]);
-        }
-        if (remote.equals("South Korea") && job.equals("Software engineer")) {
-            mRc_salary.setText(avg_salary_kor[0]);
-        }
-        if (home.equals("South Korea") && job.equals("Software tester")) {
-            mHc_salary.setText(avg_salary_kor[1]);
-        }
-        if (remote.equals("South Korea") && job.equals("Software tester")) {
-            mRc_salary.setText(avg_salary_kor[1]);
-        }
-        if (home.equals("South Korea") && job.equals("UI designer")) {
-            mHc_salary.setText(avg_salary_kor[2]);
-        }
-        if (remote.equals("South Korea") && job.equals("UI designer")) {
-            mRc_salary.setText(avg_salary_kor[2]);
-        }
-        if (home.equals("South Korea") && job.equals("Web developer")) {
-            mHc_salary.setText(avg_salary_kor[3]);
-        }
-        if (remote.equals("South Korea") && job.equals("Web developer")) {
-            mRc_salary.setText(avg_salary_kor[3]);
-        }
-        if (home.equals("South Korea") && job.equals("Digital marketing specialist")) {
-            mHc_salary.setText(avg_salary_kor[4]);
-        }
-        if (remote.equals("South Korea") && job.equals("Digital marketing specialist")) {
-            mRc_salary.setText(avg_salary_kor[4]);
-        }
-        if (home.equals("South Korea") && job.equals("Web designer")) {
-            mHc_salary.setText(avg_salary_kor[5]);
-        }
-        if (remote.equals("South Korea") && job.equals("Web designer")) {
-            mRc_salary.setText(avg_salary_kor[5]);
-        }
-        if (home.equals("South Korea") && job.equals("Mobile developer")) {
-            mHc_salary.setText(avg_salary_kor[6]);
-        }
-        if (remote.equals("South Korea") && job.equals("Mobile developer")) {
-            mRc_salary.setText(avg_salary_kor[6]);
-        }
-        if (home.equals("South Korea") && job.equals("Game developer")) {
-            mHc_salary.setText(avg_salary_kor[7]);
-        }
-        if (remote.equals("South Korea") && job.equals("Game developer")) {
-            mRc_salary.setText(avg_salary_kor[7]);
-        }
-        if (home.equals("South Korea") && job.equals("UX designer")) {
-            mHc_salary.setText(avg_salary_kor[8]);
-        }
-        if (remote.equals("South Korea") && job.equals("UX designer")) {
-            mRc_salary.setText(avg_salary_kor[8]);
-        }
-        if (home.equals("South Korea") && job.equals("Network administrator")) {
-            mHc_salary.setText(avg_salary_kor[9]);
-        }
-        if (remote.equals("South Korea") && job.equals("Network administrator")) {
-            mRc_salary.setText(avg_salary_kor[9]);
-        }
 
 // PERCENT DIFFERENCE TEXT
 
@@ -2526,8 +1970,1593 @@ public class SalaryInfoActivity extends AppCompatActivity {
         }
 
 
+//======================================================================================================================
 
 
+        // WEB DESIGNER
+        if (job.equals("Web designer")) {
 
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48083, 48632, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 150000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 46928, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48083, 44300, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 3500000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 1200000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 57000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48083, 22860, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48083, 41612840, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 48083, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 150000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 46928, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48632, 44300, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 3500000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 1200000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 57000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48632, 22860, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48632, 41612840, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 48632, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 48083, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 46928, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 44300, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(150000, 3500000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(150000, 1200000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 57000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(150000, 22860, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(150000, 41612840, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(46928, 48632, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(46928, 48083, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(46928, 150000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(46928, 44300, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(46928, 3500000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(46928, 1200000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(46928, 57000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(46928, 22860, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(46928, 41612840, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 48632, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 48083, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 150000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 46928, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 3500000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 1200000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 57000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44300, 22860, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(44300, 41612840, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 48632, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 48083, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 150000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 46928, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 44300, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3500000, 1200000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 57000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(3500000, 22860, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(3500000, 41612840, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 48632, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 48083, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 150000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 46928, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 44300, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 3500000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 57000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(1200000, 22860, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(1200000, 41612840, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 48632, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 48083, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 150000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 46928, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 44300, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 3500000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 1200000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57000, 22860, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57000, 41612840, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 48632, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 48083, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 150000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 46928, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 44300, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 3500000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 1200000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 57000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(22860, 41612840, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 48632, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 48083, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 150000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 46928, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 44300, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 3500000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 1200000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 57000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(41612840, 22860, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // MOBILE DEVELOPER
+        if (job.equals("Mobile developer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57380, 71495, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 300000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 60789, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57380, 48802, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 4560000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 2250000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 59000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(57380, 30200, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(57380, 64964060, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 57380, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 300000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 60789, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(71495, 48802, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 4560000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 2250000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 59000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(71495, 30200, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(71495, 64964060, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 71495, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 57380, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 60789, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 48802, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(300000, 4560000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(300000, 2250000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 59000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(300000, 30200, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(300000, 64964060, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60789, 71495, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60789, 57380, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60789, 300000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60789, 48802, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60789, 4560000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60789, 2250000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60789, 59000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60789, 30200, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60789, 64964060, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 71495, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 57380, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 300000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 60789, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 4560000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 2250000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 59000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48802, 30200, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48802, 64964060, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 71495, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 57380, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 300000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 60789, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 48802, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(4560000, 2250000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 59000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(4560000, 30200, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(4560000, 64964060, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 71495, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 57380, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 300000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 60789, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 48802, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 4560000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 59000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2250000, 30200, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2250000, 64964060, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(59000, 71495, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(59000, 57380, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(59000, 300000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(59000, 60789, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(59000, 48802, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(59000, 4560000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(59000, 2250000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(59000, 30200, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(59000, 64964060, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 71495, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 57380, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 300000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 60789, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 48802, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 4560000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 2250000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 59000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30200, 64964060, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 71495, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 57380, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 300000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 60789, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 48802, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 4560000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 2250000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 59000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(64964060, 30200, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // GAME DEVELOPER
+        if (job.equals("Game developer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(51352, 65244, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 180000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 40934, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(51352, 38500, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 5180000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 2500000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 48000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(51352, 30671, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51352, 43500000, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 51352, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 180000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 40934, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(65244, 38500, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 5180000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 2500000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 48000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(65244, 30671, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(65244, 43500000, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 65244, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 51352, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 40934, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 38500, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(180000, 5180000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(180000, 2500000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 48000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(180000, 30671, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(180000, 43500000, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40934, 65244, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40934, 51352, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40934, 180000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40934, 38500, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40934, 5180000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40934, 2500000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40934, 48000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(40934, 30671, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(40934, 43500000, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 65244, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 51352, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 180000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 40934, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 5180000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 2500000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 48000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(38500, 30671, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(38500, 43500000, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 65244, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 51352, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 180000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 40934, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 38500, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5180000, 2500000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 48000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5180000, 30671, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5180000, 43500000, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 65244, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 51352, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 180000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 40934, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 38500, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 5180000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 48000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2500000, 30671, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2500000, 43500000, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48000, 65244, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48000, 51352, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48000, 180000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48000, 40934, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48000, 38500, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48000, 5180000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48000, 2500000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(48000, 30671, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(48000, 43500000, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 65244, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 51352, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 180000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 40934, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 38500, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 5180000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 2500000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 48000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30671, 43500000, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 65244, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 51352, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 180000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 40934, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 38500, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 5180000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 2500000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 48000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(43500000, 30671, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // UX DESIGNER
+        if (job.equals("UX designer")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(58670, 73800, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 365000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 50229, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(58670, 51000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 5000000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 2350000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 49000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(58670, 30758, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(58670, 44802800, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 58670, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 365000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 50229, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(73800, 51000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 5000000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 2350000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 49000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(73800, 30758, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(73800, 44802800, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 73800, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 58670, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 50229, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 51000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(365000, 5000000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(365000, 2350000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 49000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(365000, 30758, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(365000, 44802800, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50229, 73800, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50229, 58670, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50229, 365000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50229, 51000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50229, 5000000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50229, 2350000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50229, 49000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(50229, 30758, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(50229, 44802800, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 73800, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 58670, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 365000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 50229, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 5000000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 2350000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 49000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(51000, 30758, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(51000, 44802800, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 73800, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 58670, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 365000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 50229, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 51000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5000000, 2350000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 49000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(5000000, 30758, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(5000000, 44802800, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 73800, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 58670, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 365000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 50229, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 51000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 5000000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 49000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2350000, 30758, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2350000, 44802800, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 73800, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 58670, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 365000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 50229, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 51000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 5000000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 2350000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(49000, 30758, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(49000, 44802800, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 73800, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 58670, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 365000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 50229, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 51000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 5000000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 2350000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 49000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(30758, 44802800, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 73800, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 58670, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 365000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 50229, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 51000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 5000000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 2350000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 49000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(44802800, 30758, 1438.08, home, remote));
+                }
+            }
+        }
+
+
+//======================================================================================================================
+
+
+        // NETWORK ADMINISTRATOR
+        if (job.equals("Network administrator")) {
+
+            // CANADA AS THE HOME COUNTRY
+            if (home.equals("Canada")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(56174, 56576, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 360000, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 80994, 2.41, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(56174, 55000, 1.52, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 6450000, 81.98, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 2000000, 233.40, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 60000, 2.75, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(56174, 20338, 1.74, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56174, 27785576, 829.34, home, remote));
+                }
+            }
+
+            // UNITED STATES AS THE HOME COUNTRY
+            if (home.equals("United States")) {
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 56174, 1.35, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 360000, 18.68, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 80994, 3.25, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(56576, 55000, 1.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 6450000, 110.52, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 2000000, 314.75, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 60000, 3.71, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(56576, 20338, 1.29, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(56576, 27785576, 1118.40, home, remote));
+                }
+            }
+
+            // MEXICO AS THE HOME COUNTRY
+            if (home.equals("Mexico")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 56576, 18.68, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 56174, 13.85, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 80994, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 55000, 21.13, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(360000, 6450000, 5.89, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(360000, 2000000, 16.80, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 60000, 5.05, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(360000, 20338, 24.11, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(360000, 27785576, 59.67, home, remote));
+                }
+            }
+
+            // BRAZIL AS THE HOME COUNTRY
+            if (home.equals("Brazil")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80994, 56576, 3.25, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80994, 56174, 2.41, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80994, 360000, 5.75, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80994, 55000, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80994, 6450000, 34.00, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80994, 2000000, 96.96, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80994, 60000, 1.14, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(80994, 20338, 4.18, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(80994, 27785576, 344.29, home, remote));
+                }
+            }
+
+            // GERMANY AS THE HOME COUNTRY
+            if (home.equals("Germany")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 56576, 1.13, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 56174, 1.52, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 360000, 21.13, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 80994, 3.66, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 6450000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 2000000, 354.90, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 60000, 4.18, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(55000, 20338, 1.14, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(55000, 27785576, 1260.39, home, remote));
+                }
+            }
+
+            // JAPAN AS THE HOME COUNTRY
+            if (home.equals("Japan")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 56576, 110.52, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 56174, 81.98, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 360000, 5.89, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 80994, 34.00, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 55000, 124.49, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(6450000, 2000000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 60000, 29.74, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(6450000, 20338, 142.12, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(6450000, 27785576, 10.12, home, remote));
+                }
+            }
+
+            // NIGERIA AS THE HOME COUNTRY
+            if (home.equals("Nigeria")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 56576, 314.75, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 56174, 233.40, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 360000, 16.80, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 80994, 96.96, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 55000, 354.90, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 6450000, 2.85, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 60000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(2000000, 20338, 404.99, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(2000000, 27785576, 3.55, home, remote));
+                }
+            }
+
+            // POLAND AS THE HOME COUNTRY
+            if (home.equals("Poland")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60000, 56576, 3.71, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60000, 56174, 2.75, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60000, 360000, 5.05, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60000, 80994, 1.14, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60000, 55000, 4.18, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60000, 6450000, 29.74, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60000, 2000000, 84.80, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(60000, 20338, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(60000, 27785576, 301.16, home, remote));
+                }
+            }
+
+            // ENGLAND AS THE HOME COUNTRY
+            if (home.equals("England")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 56576, 1.29, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 56174, 1.74, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 360000, 24.11, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 80994, 4.18, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 55000, 1.14, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 6450000, 142.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 2000000, 404.99, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 60000, 4.78, home, remote));
+                }
+                if (remote.equals("South Korea")) {
+                    mPercent.setText(percent.difference_home_more_valuable(20338, 27785576, 1438.08, home, remote));
+                }
+            }
+
+            // SOUTH KOREA AS THE HOME COUNTRY
+            if (home.equals("South Korea")) {
+                if (remote.equals("United States")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 56576, 1118.40, home, remote));
+                }
+                if (remote.equals("Canada")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 56174, 829.34, home, remote));
+                }
+                if (remote.equals("Mexico")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 360000, 59.67, home, remote));
+                }
+                if (remote.equals("Brazil")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 80994, 344.29, home, remote));
+                }
+                if (remote.equals("Germany")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 55000, 1260.39, home, remote));
+                }
+                if (remote.equals("Japan")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 6450000, 10.12, home, remote));
+                }
+                if (remote.equals("Nigeria")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 2000000, 3.55, home, remote));
+                }
+                if (remote.equals("Poland")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 60000, 301.16, home, remote));
+                }
+                if (remote.equals("England")) {
+                    mPercent.setText(percent.difference_remote_more_valuable(27785576, 20338, 1438.08, home, remote));
+                }
+            }
+        }
     }
 }

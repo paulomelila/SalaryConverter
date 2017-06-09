@@ -8,9 +8,10 @@ import java.text.NumberFormat;
 
 public class PercentDifference {
 
+//      methods to convert currencies and get percentage difference
 
-//      IF HOME COUNTRY IS MORE VALUABLE THAN REMOTE COUNTRY
 
+    // IF HOME COUNTRY IS MORE VALUABLE THAN REMOTE COUNTRY
     public String  difference_home_more_valuable (double home, double remote, double rate, String hc, String rc) {
       NumberFormat fmt = NumberFormat.getPercentInstance();
       double remote_converted = remote / rate; // convert the remote country to the home country currency
@@ -24,8 +25,7 @@ public class PercentDifference {
       }
     }
 
-//     IF REMOTE COUNTRY IS MORE VALUABLE THAN HOME COUNTRY
-
+    // IF REMOTE COUNTRY IS MORE VALUABLE THAN HOME COUNTRY
     public String difference_remote_more_valuable (double home, double remote, double rate, String hc, String rc) {
         NumberFormat fmt = NumberFormat.getPercentInstance();
         double home_converted = home / rate; // convert the home country to the remote country currency

@@ -4,7 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 367e4539cb71de97860db0c682e47318a46ec8a0
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -60,12 +63,17 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light" />
 
 </LinearLayout>
 
+<<<<<<< HEAD
 </ScrollView>
 
 
+=======
+</ScrollView>
+>>>>>>> 367e4539cb71de97860db0c682e47318a46ec8a0

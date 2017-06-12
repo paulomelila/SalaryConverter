@@ -1,41 +1,53 @@
 package com.example.paulo.salaryconverter;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
- * Created by kaorihirata on 2017-06-07.
+ * Created by Paulo on 07/06/2017.
  */
 
 public class Salary {
-    Country salaryCountry;
-    CharSequence AverageSalary;
-    Job salaryJobName;
 
-    public Salary(Country salaryCountry, CharSequence averageSalary, Job salaryJobName) {
-        this.salaryCountry = salaryCountry;
-        AverageSalary = averageSalary;
-        this.salaryJobName = salaryJobName;
+//      methods to convert currencies and get percentage difference
+
+    // IF HOME COUNTRY IS MORE VALUABLE THAN REMOTE COUNTRY
+    public String  difference_home_more_valuable (double home, double remote, double rate, String hc, String rc) {
+      NumberFormat fmt = NumberFormat.getPercentInstance();
+      double remote_converted = remote / rate; // convert the remote country to the home country currency
+      if (remote_converted > home) {
+         String result = fmt.format(1 - (home/remote_converted));
+         return result + " higher in " + rc;
+       }
+       else {
+          String result = fmt.format(1 - (remote_converted / home));
+          return result + " higher in " + hc;
+      }
     }
 
-    public CharSequence getAverageSalary() {
-        return AverageSalary;
+    // IF REMOTE COUNTRY IS MORE VALUABLE THAN HOME COUNTRY
+    public String difference_remote_more_valuable (double home, double remote, double rate, String hc, String rc) {
+        NumberFormat fmt = NumberFormat.getPercentInstance();
+        double home_converted = home / rate; // convert the home country to the remote country currency
+        if (home_converted > remote) {
+            String result = fmt.format(1 - (remote/home_converted) );
+            return result + " higher in " + hc;
+        }
+        else {
+            String result = fmt.format(1 - (home_converted/remote));
+            return result + " higher in " + rc;
+        }
     }
 
-    public void setAverageSalary(CharSequence averageSalary) {
-        AverageSalary = averageSalary;
+    // method to display salary with commas
+    public String averageSalary(double salary, String currency) {
+        DecimalFormat fmt = new DecimalFormat("###,###");
+        return fmt.format(salary) + " " + currency;
     }
 
-    public Country getSalaryCountry() {
-        return salaryCountry;
-    }
-
-    public void setSalaryCountry(Country salaryCountry) {
-        this.salaryCountry = salaryCountry;
-    }
-
-    public Job getSalaryJobName() {
-        return salaryJobName;
-    }
-
-    public void setSalaryJobName(Job salaryJobName) {
-        this.salaryJobName = salaryJobName;
+    // method to convert the rate to double
+    public double getRate (String rate) {
+        double mRate = Double.parseDouble(rate);
+        return mRate;
     }
 }

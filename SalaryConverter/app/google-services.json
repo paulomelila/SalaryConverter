@@ -1,27 +1,38 @@
 {
   "project_info": {
-    "project_number": "356269252873",
-    "firebase_url": "https://salaryconverter-ff54e.firebaseio.com",
-    "project_id": "salaryconverter-ff54e",
-    "storage_bucket": "salaryconverter-ff54e.appspot.com"
+    "project_number": "510677524026",
+    "firebase_url": "https://salarydatabase-a05c7.firebaseio.com",
+    "project_id": "salarydatabase-a05c7",
+    "storage_bucket": "salarydatabase-a05c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:356269252873:android:64e18102c314f8e7",
+        "mobilesdk_app_id": "1:510677524026:android:64e18102c314f8e7",
         "android_client_info": {
           "package_name": "com.example.paulo.salaryconverter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "356269252873-viil3iuq9uu7pedovr84sn4avnvr677j.apps.googleusercontent.com",
+          "client_id": "510677524026-885datp8qbqmghjdnegfavtis3j4ehrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.paulo.salaryconverter",
+            "certificate_hash": "52394a820fcb91e15b4d99143eb4f7db54fdd2dd"
+          }
+        },
+        {
+          "client_id": "510677524026-633rc8r9g2j3r9pbd0n9j6trubdfqglu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9jJckIFViPa7i3IKS5efekaH-wqoRPEI"
+          "current_key": "AIzaSyCzpbjq1p-GXy4Yfan35bAE_-vynkvmYgY"
+        },
+        {
+          "current_key": "AIzaSyB4wsmkNl9LsopQiWH_nsUE-YN8kXepqPM"
         }
       ],
       "services": {
@@ -29,8 +40,60 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510677524026-633rc8r9g2j3r9pbd0n9j6trubdfqglu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510677524026:android:61128fb50e5843d9",
+        "android_client_info": {
+          "package_name": "com.example.paulo.salarydatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510677524026-pj83gj17f885vsimaqhuq2blqan8dhhd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.paulo.salarydatabase",
+            "certificate_hash": "52394a820fcb91e15b4d99143eb4f7db54fdd2dd"
+          }
+        },
+        {
+          "client_id": "510677524026-633rc8r9g2j3r9pbd0n9j6trubdfqglu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzpbjq1p-GXy4Yfan35bAE_-vynkvmYgY"
+        },
+        {
+          "current_key": "AIzaSyB4wsmkNl9LsopQiWH_nsUE-YN8kXepqPM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510677524026-633rc8r9g2j3r9pbd0n9j6trubdfqglu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

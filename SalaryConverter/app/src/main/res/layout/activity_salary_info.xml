@@ -53,13 +53,12 @@
 
     </LinearLayout>
 
-    <!--PercentDifference area-->
+    <!--Salary area-->
     <LinearLayout
         style="@style/HightRapWidthParentVertical">
         <TextView
             android:textAlignment="center"
             android:id="@+id/percentDifferenceTex"
-            android:text="@string/percentDifferenceText"
             style="@style/fontBig"
             android:layout_gravity="center"/>
     </LinearLayout>
@@ -117,7 +116,6 @@
 
             <TextView
                 android:id="@+id/homeCountryAverageSalary"
-                android:text="@string/homeCountryAverageSalary"
                 android:layout_gravity="center_vertical"
                 style="@style/fontMid_Main"
                 android:layout_marginStart="20dp"
@@ -137,7 +135,6 @@
                 android:id="@+id/remoteCountryAverageSalary"
                 android:layout_gravity="center_vertical"
                 style="@style/fontMid_Main"
-                android:text="@string/remoteCountryAverageSalary"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"/>
         </LinearLayout>

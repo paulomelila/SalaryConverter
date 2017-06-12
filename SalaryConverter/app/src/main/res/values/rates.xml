@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--//CONVERSION RATES-->
+
+    <string-array name="usa_rates">
+        <!--//-USD-CAD--><item>1.35</item>
+        <!--//-USD-MXN--><item>18.68</item>
+        <!--//-USD-BRL--><item>3.25</item>
+        <!--//-EUR-USD--><item>1.13</item>
+        <!--//-USD-JPY--><item>110.52</item>
+        <!--//-USD-NGN--><item>314.75</item>
+        <!--//-USD-PLN--><item>3.71</item>
+        <!--//-GBP-USD--><item>1.29</item>
+        <!--//-USD-KRW--><item>1118.40</item>
+    </string-array>
+
+    <string-array name="canada_rates">
+        <!--//-USD-CAD--><item>1.35</item>
+        <!--//-CAD-MXN--><item>13.85</item>
+        <!--//-CAD-BRL--><item>2.41</item>
+        <!--//-EUR-CAD--><item>1.52</item>
+        <!--//-CAD-JPY--><item>81.98</item>
+        <!--//-CAD-NGN--><item>233.40</item>
+        <!--//-CAD-PLN--><item>2.75</item>
+        <!--//-GBP-CAD--><item>1.74</item>
+        <!--//-CAD-KRW--><item>829.34</item>
+    </string-array>
+
+    <string-array name="mexico_rates">
+        <!--//-USD-MXN--><item>18.68</item>
+        <!--//-CAD-MXN--><item>13.85</item>
+        <!--//-BRL-MXN--><item>5.75</item>
+        <!--//-EUR-MXN--><item>21.13</item>
+        <!--//-MXN-JPY--><item>5.89</item>
+        <!--//-MXN-NGN--><item>16.80</item>
+        <!--//-PLN-MXN--><item>5.05</item>
+        <!--//-GBP-MXN--><item>24.11</item>
+        <!--//-MXN-KRW--><item>59.67</item>
+    </string-array>
+
+    <string-array name="brazil_rates">
+        <!--//-USD-BRL--><item>3.25</item>
+        <!--//-CAD-BRL--><item>2.41</item>
+        <!--//-BRL-MXN--><item>5.75</item>
+        <!--//-EUR-BRL--><item>3.66</item>
+        <!--//-BRL-JPY--><item>34.00</item>
+        <!--//-BRL-NGN--><item>96.96</item>
+        <!--//-BRL-PLN--><item>1.14</item>
+        <!--//-GBP-BRL--><item>4.18</item>
+        <!--//-BRL-KRW--><item>344.29</item>
+    </string-array>
+
+    <string-array name="germany_rates">
+        <!--//-EUR-USD--><item>1.13</item>
+        <!--//-EUR-CAD--><item>1.52</item>
+        <!--//-EUR-MXN--><item>21.13</item>
+        <!--//-EUR-BRL--><item>3.66</item>
+        <!--//-EUR-JPY--><item>124.49</item>
+        <!--//-EUR-NGN--><item>354.90</item>
+        <!--//-EUR-PLN--><item>4.18</item>
+        <!--//-GBP-EUR--><item>1.14</item>
+        <!--//-EUR-KRW--><item>1260.39</item>
+    </string-array>
+
+    <string-array name="japan_rates">
+        <!--//-USD-JPY--><item>110.52</item>
+        <!--//-CAD-JPY--><item>81.98</item>
+        <!--//-MXN-JPY--><item>5.89</item>
+        <!--//-BRL-JPY--><item>34.00</item>
+        <!--//-EUR-JPY--><item>124.49</item>
+        <!--//-JPY-NGN--><item>2.85</item>
+        <!--//-PLN-JPY--><item>29.74</item>
+        <!--//-GBP-JPY--><item>142.12</item>
+        <!--//-JPY-KRW--><item>10.12</item>
+    </string-array>
+
+    <string-array name="nigeria_rates">
+        <!--//-USD-NGN--><item>314.75</item>
+        <!--//-CAD-NGN--><item>233.40</item>
+        <!--//-MXN-NGN--><item>16.80</item>
+        <!--//-BRL-NGN--><item>96.96</item>
+        <!--//-EUR-NGN--><item>354.90</item>
+        <!--//-JPY-NGN--><item>2.85</item>
+        <!--//-PLN-NGN--><item>84.80</item>
+        <!--//-GBP-NGN--><item>404.99</item>
+        <!--//-NGN-KRW--><item>3.55</item>
+    </string-array>
+
+    <string-array name="poland_rates">
+        <!--//-USD-PLN--><item>3.71</item>
+        <!--//-CAD-PLN--><item>2.75</item>
+        <!--//-PLN-MXN--><item>5.05</item>
+        <!--//-BRL-PLN--><item>1.14</item>
+        <!--//-EUR-PLN--><item>4.18</item>
+        <!--//-PLN-JPY--><item>29.74</item>
+        <!--//-PLN-NGN--><item>84.80</item>
+        <!--//-GBP-PLN--><item>4.78</item>
+        <!--//-PLN-KRW--><item>301.16</item>
+    </string-array>
+
+    <string-array name="england_rates">
+        <!--//-GBP-USD--><item>1.29</item>
+        <!--//-GBP-CAD--><item>1.74</item>
+        <!--//-GBP-MXN--><item>24.11</item>
+        <!--//-GBP-BRL--><item>4.18</item>
+        <!--//-GBP-EUR--><item>1.14</item>
+        <!--//-GBP-JPY--><item>142.12</item>
+        <!--//-GBP-NGN--><item>404.99</item>
+        <!--//-GBP-PLN--><item>4.78</item>
+        <!--//-GBP-KRW--><item>1438.08</item>
+    </string-array>
+
+    <string-array name="south_korea_rates">
+        <!--//-USD-KRW--><item>1118.40</item>
+        <!--//-CAD-KRW--><item>829.34</item>
+        <!--//-MXN-KRW--><item>59.67</item>
+        <!--//-BRL-KRW--><item>344.29</item>
+        <!--//-EUR-KRW--><item>1260.39</item>
+        <!--//-JPY-KRW--><item>10.12</item>
+        <!--//-NGN-KRW--><item>3.55</item>
+        <!--//-PLN-KRW--><item>301.16</item>
+        <!--//-GBP-KRW--><item>1438.08</item>
+    </string-array>
+
+</resources>

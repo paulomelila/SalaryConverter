@@ -1164,333 +1164,433 @@ public class SalaryInfoActivity extends AppCompatActivity {
             // UI DESIGNER
             if (job.equals("UI designer")) {
                 mRootRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                double can_UId = dataSnapshot.child("Canada").child("UI designer").getValue(Double.class);
-                double usa_UId = dataSnapshot.child("United States").child("UI designer").getValue(Double.class);
-                double mex_UId = dataSnapshot.child("Mexico").child("UI designer").getValue(Double.class);
-                double bra_UId = dataSnapshot.child("Brazil").child("UI designer").getValue(Double.class);
-                double ger_UId = dataSnapshot.child("Germany").child("UI designer").getValue(Double.class);
-                double jap_UId = dataSnapshot.child("Japan").child("UI designer").getValue(Double.class);
-                double nig_UId = dataSnapshot.child("Nigeria").child("UI designer").getValue(Double.class);
-                double pol_UId = dataSnapshot.child("Poland").child("UI designer").getValue(Double.class);
-                double eng_UId = dataSnapshot.child("England").child("UI designer").getValue(Double.class);
-                double kor_UId = dataSnapshot.child("South Korea").child("UI designer").getValue(Double.class);
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_UId = dataSnapshot.child("Canada").child("UI designer").getValue(Double.class);
+                        double usa_UId = dataSnapshot.child("United States").child("UI designer").getValue(Double.class);
+                        double mex_UId = dataSnapshot.child("Mexico").child("UI designer").getValue(Double.class);
+                        double bra_UId = dataSnapshot.child("Brazil").child("UI designer").getValue(Double.class);
+                        double ger_UId = dataSnapshot.child("Germany").child("UI designer").getValue(Double.class);
+                        double jap_UId = dataSnapshot.child("Japan").child("UI designer").getValue(Double.class);
+                        double nig_UId = dataSnapshot.child("Nigeria").child("UI designer").getValue(Double.class);
+                        double pol_UId = dataSnapshot.child("Poland").child("UI designer").getValue(Double.class);
+                        double eng_UId = dataSnapshot.child("England").child("UI designer").getValue(Double.class);
+                        double kor_UId = dataSnapshot.child("South Korea").child("UI designer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UId, usa_UId, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, mex_UId, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, bra_UId, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UId, ger_UId, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, jap_UId, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, nig_UId, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, pol_UId, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UId, eng_UId, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UId, kor_UId, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(can_UId, usa_UId, rate.getRate(can_rates[0]), home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, mex_UId, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, bra_UId, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(can_UId, ger_UId, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, jap_UId, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, nig_UId, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, pol_UId, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(can_UId, eng_UId, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(can_UId, kor_UId, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, can_UId, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, mex_UId, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, bra_UId, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_UId, ger_UId, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, jap_UId, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, nig_UId, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, pol_UId, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_UId, eng_UId, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UId, kor_UId, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, can_UId, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, mex_UId, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, bra_UId, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(usa_UId, ger_UId, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, jap_UId, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, nig_UId, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, pol_UId, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(usa_UId, eng_UId, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(usa_UId, kor_UId, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, usa_UId, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, can_UId, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, bra_UId, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, ger_UId, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UId, jap_UId, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UId, nig_UId, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, pol_UId, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UId, eng_UId, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UId, kor_UId, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, usa_UId, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, can_UId, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, bra_UId, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, ger_UId, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(mex_UId, jap_UId, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(mex_UId, nig_UId, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, pol_UId, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(mex_UId, eng_UId, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(mex_UId, kor_UId, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UId, usa_UId, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UId, can_UId, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UId, mex_UId, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UId, ger_UId, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UId, jap_UId, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UId, nig_UId, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UId, pol_UId, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UId, eng_UId, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UId, kor_UId, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(bra_UId, usa_UId, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(bra_UId, can_UId, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(bra_UId, mex_UId, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(bra_UId, ger_UId, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(bra_UId, jap_UId, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(bra_UId, nig_UId, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(bra_UId, pol_UId, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(bra_UId, eng_UId, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(bra_UId, kor_UId, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, usa_UId, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, can_UId, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, mex_UId, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, bra_UId, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, jap_UId, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, nig_UId, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, pol_UId, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_UId, eng_UId, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UId, kor_UId, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, usa_UId, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, can_UId, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, mex_UId, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, bra_UId, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, jap_UId, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, nig_UId, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, pol_UId, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(ger_UId, eng_UId, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(ger_UId, kor_UId, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, usa_UId, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, can_UId, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, mex_UId, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, bra_UId, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, ger_UId, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_UId, nig_UId, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, pol_UId, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UId, eng_UId, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_UId, kor_UId, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, usa_UId, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, can_UId, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, mex_UId, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, bra_UId, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, ger_UId, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(jap_UId, nig_UId, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, pol_UId, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(jap_UId, eng_UId, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(jap_UId, kor_UId, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, usa_UId, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, can_UId, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, mex_UId, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, bra_UId, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, ger_UId, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, jap_UId, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, pol_UId, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UId, eng_UId, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_UId, kor_UId, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, usa_UId, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, can_UId, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, mex_UId, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, bra_UId, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, ger_UId, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, jap_UId, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, pol_UId, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(nig_UId, eng_UId, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(nig_UId, kor_UId, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UId, usa_UId, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UId, can_UId, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UId, mex_UId, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UId, bra_UId, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UId, ger_UId, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UId, jap_UId, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UId, nig_UId, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UId, eng_UId, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UId, kor_UId, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(pol_UId, usa_UId, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(pol_UId, can_UId, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(pol_UId, mex_UId, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(pol_UId, bra_UId, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(pol_UId, ger_UId, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(pol_UId, jap_UId, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(pol_UId, nig_UId, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(pol_UId, eng_UId, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(pol_UId, kor_UId, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, usa_UId, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, can_UId, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, mex_UId, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, bra_UId, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, ger_UId, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, jap_UId, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, nig_UId, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, pol_UId, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UId, kor_UId, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, usa_UId, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_UId, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, usa_UId, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UId, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, can_UId, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UId, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, mex_UId, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UId, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, bra_UId, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UId, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, ger_UId, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UId, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, jap_UId, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UId, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, nig_UId, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UId, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, pol_UId, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UId, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UId, eng_UId, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UId, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, can_UId, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, mex_UId, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, bra_UId, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, ger_UId, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, jap_UId, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, nig_UId, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, pol_UId, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(eng_UId, kor_UId, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, usa_UId, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, can_UId, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, mex_UId, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, bra_UId, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, ger_UId, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, jap_UId, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, nig_UId, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, pol_UId, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(kor_UId, eng_UId, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {}
-        });
-    }
+
 
 
 //======================================================================================================================
@@ -1498,316 +1598,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // WEB DEVELOPER
             if (job.equals("Web developer")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_wDev = dataSnapshot.child("Canada").child("Web developer").getValue(Double.class);
+                        double usa_wDev = dataSnapshot.child("United States").child("Web developer").getValue(Double.class);
+                        double mex_wDev = dataSnapshot.child("Mexico").child("Web developer").getValue(Double.class);
+                        double bra_wDev = dataSnapshot.child("Brazil").child("Web developer").getValue(Double.class);
+                        double ger_wDev = dataSnapshot.child("Germany").child("Web developer").getValue(Double.class);
+                        double jap_wDev = dataSnapshot.child("Japan").child("Web developer").getValue(Double.class);
+                        double nig_wDev = dataSnapshot.child("Nigeria").child("Web developer").getValue(Double.class);
+                        double pol_wDev = dataSnapshot.child("Poland").child("Web developer").getValue(Double.class);
+                        double eng_wDev = dataSnapshot.child("England").child("Web developer").getValue(Double.class);
+                        double kor_wDev = dataSnapshot.child("South Korea").child("Web developer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDev, usa_wDev, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, mex_wDev, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, bra_wDev, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDev, ger_wDev, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, jap_wDev, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, nig_wDev, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, pol_wDev, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDev, eng_wDev, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDev, kor_wDev, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49758, 57702, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 354000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 60560, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49758, 50000, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 3763765, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 2350000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 57000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49758, 24833, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49758, 39045640, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, can_wDev, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, mex_wDev, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, bra_wDev, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_wDev, ger_wDev, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, jap_wDev, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, nig_wDev, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, pol_wDev, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_wDev, eng_wDev, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDev, kor_wDev, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 49758, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 354000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 60560, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57702, 50000, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 3763765, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 2350000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 57000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57702, 24833, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57702, 39045640, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, usa_wDev, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, can_wDev, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, bra_wDev, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, ger_wDev, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDev, jap_wDev, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDev, nig_wDev, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, pol_wDev, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDev, eng_wDev, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDev, kor_wDev, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 57702, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 49758, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 60560, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 50000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(354000, 3763765, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(354000, 2350000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 57000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(354000, 24833, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(354000, 39045640, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDev, usa_wDev, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDev, can_wDev, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDev, mex_wDev, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDev, ger_wDev, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDev, jap_wDev, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDev, nig_wDev, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDev, pol_wDev, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDev, eng_wDev, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDev, kor_wDev, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60560, 57702, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60560, 49758, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60560, 354000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60560, 50000, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60560, 3763765, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60560, 2350000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60560, 57000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60560, 24833, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60560, 39045640, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, usa_wDev, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, can_wDev, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, mex_wDev, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, bra_wDev, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, jap_wDev, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, nig_wDev, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, pol_wDev, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_wDev, eng_wDev, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDev, kor_wDev, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 57702, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 49758, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 354000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 60560, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 3763765, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 2350000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 57000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50000, 24833, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50000, 39045640, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, usa_wDev, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, can_wDev, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, mex_wDev, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, bra_wDev, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, ger_wDev, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_wDev, nig_wDev, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, pol_wDev, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDev, eng_wDev, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_wDev, kor_wDev, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 57702, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 49758, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 354000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 60560, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 50000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3763765, 2350000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 57000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3763765, 24833, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3763765, 39045640, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, usa_wDev, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, can_wDev, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, mex_wDev, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, bra_wDev, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, ger_wDev, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, jap_wDev, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, pol_wDev, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDev, eng_wDev, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_wDev, kor_wDev, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 57702, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 49758, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 354000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 60560, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 50000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 3763765, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 57000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 24833, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(2350000, 39045640, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDev, usa_wDev, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDev, can_wDev, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDev, mex_wDev, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDev, bra_wDev, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDev, ger_wDev, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDev, jap_wDev, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDev, nig_wDev, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDev, eng_wDev, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDev, kor_wDev, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 57702, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 49758, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 354000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 60560, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 50000, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 3763765, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 2350000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 24833, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 39045640, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, usa_wDev, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, can_wDev, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, mex_wDev, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, bra_wDev, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, ger_wDev, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, jap_wDev, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, nig_wDev, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, pol_wDev, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDev, kor_wDev, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 57702, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_wDev, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, usa_wDev, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDev, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, can_wDev, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDev, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, mex_wDev, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDev, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, bra_wDev, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDev, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, ger_wDev, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDev, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, jap_wDev, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDev, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, nig_wDev, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDev, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, pol_wDev, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDev, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDev, eng_wDev, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDev, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 49758, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 354000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 60560, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 50000, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 3763765, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 2350000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 57000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(24833, 39045640, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 57702, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 49758, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 354000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 60560, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 50000, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 3763765, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 2350000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 57000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(39045640, 24833, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 //======================================================================================================================
@@ -1815,316 +2031,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // DIGITAL MARKETING SPECIALIST
             if (job.equals("Digital marketing specialist")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_dms = dataSnapshot.child("Canada").child("Digital media specialist").getValue(Double.class);
+                        double usa_dms = dataSnapshot.child("United States").child("Digital media specialist").getValue(Double.class);
+                        double mex_dms = dataSnapshot.child("Mexico").child("Digital media specialist").getValue(Double.class);
+                        double bra_dms = dataSnapshot.child("Brazil").child("Digital media specialist").getValue(Double.class);
+                        double ger_dms = dataSnapshot.child("Germany").child("Digital media specialist").getValue(Double.class);
+                        double jap_dms = dataSnapshot.child("Japan").child("Digital media specialist").getValue(Double.class);
+                        double nig_dms = dataSnapshot.child("Nigeria").child("Digital media specialist").getValue(Double.class);
+                        double pol_dms = dataSnapshot.child("Poland").child("Digital media specialist").getValue(Double.class);
+                        double eng_dms = dataSnapshot.child("England").child("Digital media specialist").getValue(Double.class);
+                        double kor_dms = dataSnapshot.child("South Korea").child("Digital media specialist").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_dms, usa_dms, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, mex_dms, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, bra_dms, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_dms, ger_dms, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, jap_dms, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, nig_dms, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, pol_dms, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_dms, eng_dms, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_dms, kor_dms, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49533, 44663, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 480000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 50194, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49533, 53000, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 3400000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 1500000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 52000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49533, 26450, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49533, 38000000, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, can_dms, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, mex_dms, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, bra_dms, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_dms, ger_dms, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, jap_dms, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, nig_dms, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, pol_dms, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_dms, eng_dms, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_dms, kor_dms, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 49533, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 480000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 50194, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44663, 53000, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 3400000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 1500000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 52000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44663, 26450, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44663, 38000000, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, usa_dms, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, can_dms, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, bra_dms, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, ger_dms, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_dms, jap_dms, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_dms, nig_dms, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, pol_dms, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_dms, eng_dms, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_dms, kor_dms, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 44663, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 49533, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 50194, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 53000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(480000, 3400000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(480000, 1500000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 52000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(480000, 26450, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(480000, 38000000, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_dms, usa_dms, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_dms, can_dms, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_dms, mex_dms, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_dms, ger_dms, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_dms, jap_dms, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_dms, nig_dms, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_dms, pol_dms, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_dms, eng_dms, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_dms, kor_dms, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50194, 44663, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50194, 49533, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50194, 480000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50194, 53000, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50194, 3400000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50194, 1500000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50194, 52000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50194, 26450, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50194, 38000000, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, usa_dms, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, can_dms, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, mex_dms, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, bra_dms, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, jap_dms, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, nig_dms, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, pol_dms, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_dms, eng_dms, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_dms, kor_dms, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 44663, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 49533, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 480000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 50194, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 3400000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 1500000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 52000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(53000, 26450, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(53000, 38000000, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, usa_dms, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, can_dms, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, mex_dms, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, bra_dms, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, ger_dms, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_dms, nig_dms, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, pol_dms, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_dms, eng_dms, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_dms, kor_dms, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 44663, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 49533, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 480000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 50194, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 53000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3400000, 1500000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 52000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3400000, 26450, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3400000, 38000000, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, usa_dms, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, can_dms, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, mex_dms, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, bra_dms, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, ger_dms, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, jap_dms, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, pol_dms, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_dms, eng_dms, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_dms, kor_dms, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 44663, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 49533, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 480000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 50194, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 53000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 3400000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 52000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1500000, 26450, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(1500000, 38000000, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_dms, usa_dms, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_dms, can_dms, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_dms, mex_dms, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_dms, bra_dms, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_dms, ger_dms, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_dms, jap_dms, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_dms, nig_dms, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_dms, eng_dms, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_dms, kor_dms, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(52000, 44663, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(52000, 49533, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(52000, 480000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(52000, 50194, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(52000, 53000, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(52000, 3400000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(52000, 1500000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(52000, 26450, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(52000, 38000000, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, usa_dms, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, can_dms, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, mex_dms, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, bra_dms, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, ger_dms, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, jap_dms, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, nig_dms, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, pol_dms, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_dms, kor_dms, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 44663, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_dms, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, usa_dms, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_dms, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, can_dms, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_dms, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, mex_dms, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_dms, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, bra_dms, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_dms, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, ger_dms, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_dms, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, jap_dms, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_dms, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, nig_dms, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_dms, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, pol_dms, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_dms, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_dms, eng_dms, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_dms, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 49533, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 480000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 50194, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 53000, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 3400000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 1500000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 52000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(26450, 38000000, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 44663, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 49533, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 480000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 50194, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 53000, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 3400000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 1500000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 52000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38000000, 26450, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 
@@ -2133,316 +2465,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // WEB DESIGNER
             if (job.equals("Web designer")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_wDes = dataSnapshot.child("Canada").child("Web designer").getValue(Double.class);
+                        double usa_wDes = dataSnapshot.child("United States").child("Web designer").getValue(Double.class);
+                        double mex_wDes = dataSnapshot.child("Mexico").child("Web designer").getValue(Double.class);
+                        double bra_wDes = dataSnapshot.child("Brazil").child("Web designer").getValue(Double.class);
+                        double ger_wDes = dataSnapshot.child("Germany").child("Web designer").getValue(Double.class);
+                        double jap_wDes = dataSnapshot.child("Japan").child("Web designer").getValue(Double.class);
+                        double nig_wDes = dataSnapshot.child("Nigeria").child("Web designer").getValue(Double.class);
+                        double pol_wDes = dataSnapshot.child("Poland").child("Web designer").getValue(Double.class);
+                        double eng_wDes = dataSnapshot.child("England").child("Web designer").getValue(Double.class);
+                        double kor_wDes = dataSnapshot.child("South Korea").child("Web designer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDes, usa_wDes, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, mex_wDes, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, bra_wDes, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDes, ger_wDes, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, jap_wDes, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, nig_wDes, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, pol_wDes, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_wDes, eng_wDes, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_wDes, kor_wDes, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48083, 48632, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 150000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 46928, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48083, 44300, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 3500000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 1200000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 57000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48083, 22860, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48083, 41612840, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, can_wDes, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, mex_wDes, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, bra_wDes, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_wDes, ger_wDes, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, jap_wDes, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, nig_wDes, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, pol_wDes, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_wDes, eng_wDes, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_wDes, kor_wDes, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 48083, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 150000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 46928, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48632, 44300, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 3500000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 1200000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 57000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48632, 22860, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48632, 41612840, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, usa_wDes, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, can_wDes, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, bra_wDes, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, ger_wDes, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDes, jap_wDes, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDes, nig_wDes, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, pol_wDes, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_wDes, eng_wDes, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_wDes, kor_wDes, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 48632, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 48083, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 46928, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 44300, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(150000, 3500000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(150000, 1200000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 57000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(150000, 22860, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(150000, 41612840, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDes, usa_wDes, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDes, can_wDes, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDes, mex_wDes, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDes, ger_wDes, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDes, jap_wDes, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDes, nig_wDes, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDes, pol_wDes, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_wDes, eng_wDes, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_wDes, kor_wDes, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(46928, 48632, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(46928, 48083, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(46928, 150000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(46928, 44300, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(46928, 3500000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(46928, 1200000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(46928, 57000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(46928, 22860, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(46928, 41612840, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, usa_wDes, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, can_wDes, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, mex_wDes, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, bra_wDes, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, jap_wDes, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, nig_wDes, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, pol_wDes, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_wDes, eng_wDes, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_wDes, kor_wDes, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 48632, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 48083, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 150000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 46928, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 3500000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 1200000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 57000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44300, 22860, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(44300, 41612840, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, usa_wDes, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, can_wDes, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, mex_wDes, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, bra_wDes, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, ger_wDes, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_wDes, nig_wDes, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, pol_wDes, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_wDes, eng_wDes, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_wDes, kor_wDes, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 48632, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 48083, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 150000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 46928, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 44300, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3500000, 1200000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 57000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(3500000, 22860, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(3500000, 41612840, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, usa_wDes, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, can_wDes, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, mex_wDes, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, bra_wDes, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, ger_wDes, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, jap_wDes, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, pol_wDes, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_wDes, eng_wDes, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_wDes, kor_wDes, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 48632, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 48083, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 150000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 46928, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 44300, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 3500000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 57000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(1200000, 22860, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(1200000, 41612840, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDes, usa_wDes, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDes, can_wDes, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDes, mex_wDes, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDes, bra_wDes, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDes, ger_wDes, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDes, jap_wDes, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDes, nig_wDes, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_wDes, eng_wDes, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_wDes, kor_wDes, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 48632, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 48083, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 150000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 46928, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 44300, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 3500000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 1200000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57000, 22860, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57000, 41612840, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, usa_wDes, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, can_wDes, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, mex_wDes, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, bra_wDes, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, ger_wDes, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, jap_wDes, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, nig_wDes, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, pol_wDes, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_wDes, kor_wDes, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 48632, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_wDes, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, usa_wDes, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_wDes, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, can_wDes, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_wDes, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, mex_wDes, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_wDes, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, bra_wDes, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_wDes, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, ger_wDes, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_wDes, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, jap_wDes, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_wDes, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, nig_wDes, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_wDes, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, pol_wDes, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_wDes, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_wDes, eng_wDes, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_wDes, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 48083, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 150000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 46928, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 44300, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 3500000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 1200000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 57000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(22860, 41612840, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 48632, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 48083, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 150000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 46928, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 44300, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 3500000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 1200000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 57000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(41612840, 22860, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 
@@ -2451,316 +2899,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // MOBILE DEVELOPER
             if (job.equals("Mobile developer")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_md = dataSnapshot.child("Canada").child("Mobile developer").getValue(Double.class);
+                        double usa_md = dataSnapshot.child("United States").child("Mobile developer").getValue(Double.class);
+                        double mex_md = dataSnapshot.child("Mexico").child("Mobile developer").getValue(Double.class);
+                        double bra_md = dataSnapshot.child("Brazil").child("Mobile developer").getValue(Double.class);
+                        double ger_md = dataSnapshot.child("Germany").child("Mobile developer").getValue(Double.class);
+                        double jap_md = dataSnapshot.child("Japan").child("Mobile developer").getValue(Double.class);
+                        double nig_md = dataSnapshot.child("Nigeria").child("Mobile developer").getValue(Double.class);
+                        double pol_md = dataSnapshot.child("Poland").child("Mobile developer").getValue(Double.class);
+                        double eng_md = dataSnapshot.child("England").child("Mobile developer").getValue(Double.class);
+                        double kor_md = dataSnapshot.child("South Korea").child("Mobile developer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_md, usa_md, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, mex_md, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, bra_md, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_md, ger_md, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, jap_md, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, nig_md, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, pol_md, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_md, eng_md, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_md, kor_md, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57380, 71495, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 300000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 60789, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57380, 48802, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 4560000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 2250000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 59000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(57380, 30200, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(57380, 64964060, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, can_md, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, mex_md, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, bra_md, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_md, ger_md, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, jap_md, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, nig_md, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, pol_md, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_md, eng_md, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_md, kor_md, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 57380, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 300000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 60789, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(71495, 48802, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 4560000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 2250000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 59000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(71495, 30200, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(71495, 64964060, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, usa_md, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, can_md, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, bra_md, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, ger_md, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_md, jap_md, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_md, nig_md, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, pol_md, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_md, eng_md, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_md, kor_md, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 71495, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 57380, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 60789, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 48802, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(300000, 4560000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(300000, 2250000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 59000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(300000, 30200, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(300000, 64964060, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_md, usa_md, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_md, can_md, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_md, mex_md, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_md, ger_md, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_md, jap_md, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_md, nig_md, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_md, pol_md, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_md, eng_md, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_md, kor_md, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60789, 71495, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60789, 57380, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60789, 300000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60789, 48802, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60789, 4560000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60789, 2250000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60789, 59000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60789, 30200, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60789, 64964060, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, usa_md, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, can_md, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, mex_md, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, bra_md, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, jap_md, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, nig_md, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, pol_md, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_md, eng_md, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_md, kor_md, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 71495, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 57380, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 300000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 60789, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 4560000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 2250000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 59000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48802, 30200, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48802, 64964060, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, usa_md, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, can_md, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, mex_md, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, bra_md, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, ger_md, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_md, nig_md, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, pol_md, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_md, eng_md, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_md, kor_md, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 71495, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 57380, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 300000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 60789, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 48802, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(4560000, 2250000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 59000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(4560000, 30200, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(4560000, 64964060, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, usa_md, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, can_md, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, mex_md, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, bra_md, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, ger_md, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, jap_md, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, pol_md, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_md, eng_md, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_md, kor_md, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 71495, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 57380, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 300000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 60789, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 48802, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 4560000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 59000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2250000, 30200, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(2250000, 64964060, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_md, usa_md, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_md, can_md, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_md, mex_md, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_md, bra_md, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_md, ger_md, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_md, jap_md, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_md, nig_md, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_md, eng_md, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_md, kor_md, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(59000, 71495, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(59000, 57380, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(59000, 300000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(59000, 60789, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(59000, 48802, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(59000, 4560000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(59000, 2250000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(59000, 30200, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(59000, 64964060, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, usa_md, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, can_md, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, mex_md, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, bra_md, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, ger_md, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, jap_md, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, nig_md, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, pol_md, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_md, kor_md, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 71495, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_md, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, usa_md, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_md, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, can_md, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_md, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, mex_md, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_md, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, bra_md, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_md, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, ger_md, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_md, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, jap_md, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_md, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, nig_md, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_md, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, pol_md, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_md, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_md, eng_md, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_md, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 57380, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 300000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 60789, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 48802, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 4560000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 2250000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 59000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30200, 64964060, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 71495, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 57380, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 300000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 60789, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 48802, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 4560000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 2250000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 59000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(64964060, 30200, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 
@@ -2769,316 +3333,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // GAME DEVELOPER
             if (job.equals("Game developer")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_gd = dataSnapshot.child("Canada").child("Game developer").getValue(Double.class);
+                        double usa_gd = dataSnapshot.child("United States").child("Game developer").getValue(Double.class);
+                        double mex_gd = dataSnapshot.child("Mexico").child("Game developer").getValue(Double.class);
+                        double bra_gd = dataSnapshot.child("Brazil").child("Game developer").getValue(Double.class);
+                        double ger_gd = dataSnapshot.child("Germany").child("Game developer").getValue(Double.class);
+                        double jap_gd = dataSnapshot.child("Japan").child("Game developer").getValue(Double.class);
+                        double nig_gd = dataSnapshot.child("Nigeria").child("Game developer").getValue(Double.class);
+                        double pol_gd = dataSnapshot.child("Poland").child("Game developer").getValue(Double.class);
+                        double eng_gd = dataSnapshot.child("England").child("Game developer").getValue(Double.class);
+                        double kor_gd = dataSnapshot.child("South Korea").child("Game developer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_gd, usa_gd, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, mex_gd, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, bra_gd, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_gd, ger_gd, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, jap_gd, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, nig_gd, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, pol_gd, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_gd, eng_gd, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_gd, kor_gd, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(51352, 65244, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 180000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 40934, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(51352, 38500, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 5180000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 2500000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 48000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(51352, 30671, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51352, 43500000, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, can_gd, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, mex_gd, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, bra_gd, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_gd, ger_gd, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, jap_gd, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, nig_gd, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, pol_gd, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_gd, eng_gd, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_gd, kor_gd, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 51352, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 180000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 40934, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(65244, 38500, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 5180000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 2500000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 48000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(65244, 30671, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(65244, 43500000, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, usa_gd, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, can_gd, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, bra_gd, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, ger_gd, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_gd, jap_gd, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_gd, nig_gd, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, pol_gd, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_gd, eng_gd, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_gd, kor_gd, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 65244, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 51352, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 40934, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 38500, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(180000, 5180000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(180000, 2500000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 48000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(180000, 30671, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(180000, 43500000, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_gd, usa_gd, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_gd, can_gd, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_gd, mex_gd, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_gd, ger_gd, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_gd, jap_gd, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_gd, nig_gd, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_gd, pol_gd, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_gd, eng_gd, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_gd, kor_gd, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(40934, 65244, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(40934, 51352, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(40934, 180000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(40934, 38500, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(40934, 5180000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(40934, 2500000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(40934, 48000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(40934, 30671, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(40934, 43500000, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, usa_gd, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, can_gd, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, mex_gd, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, bra_gd, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, jap_gd, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, nig_gd, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, pol_gd, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_gd, eng_gd, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_gd, kor_gd, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 65244, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 51352, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 180000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 40934, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 5180000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 2500000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 48000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(38500, 30671, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(38500, 43500000, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, usa_gd, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, can_gd, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, mex_gd, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, bra_gd, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, ger_gd, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_gd, nig_gd, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, pol_gd, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_gd, eng_gd, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_gd, kor_gd, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 65244, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 51352, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 180000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 40934, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 38500, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(5180000, 2500000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 48000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5180000, 30671, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(5180000, 43500000, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, usa_gd, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, can_gd, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, mex_gd, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, bra_gd, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, ger_gd, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, jap_gd, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, pol_gd, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_gd, eng_gd, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_gd, kor_gd, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 65244, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 51352, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 180000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 40934, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 38500, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 5180000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 48000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2500000, 30671, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(2500000, 43500000, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_gd, usa_gd, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_gd, can_gd, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_gd, mex_gd, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_gd, bra_gd, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_gd, ger_gd, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_gd, jap_gd, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_gd, nig_gd, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_gd, eng_gd, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_gd, kor_gd, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48000, 65244, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48000, 51352, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48000, 180000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48000, 40934, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48000, 38500, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48000, 5180000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48000, 2500000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(48000, 30671, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(48000, 43500000, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, usa_gd, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, can_gd, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, mex_gd, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, bra_gd, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, ger_gd, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, jap_gd, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, nig_gd, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, pol_gd, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_gd, kor_gd, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 65244, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_gd, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, usa_gd, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_gd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, can_gd, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_gd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, mex_gd, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_gd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, bra_gd, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_gd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, ger_gd, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_gd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, jap_gd, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_gd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, nig_gd, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_gd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, pol_gd, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_gd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_gd, eng_gd, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_gd, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 51352, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 180000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 40934, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 38500, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 5180000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 2500000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 48000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30671, 43500000, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 65244, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 51352, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 180000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 40934, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 38500, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 5180000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 2500000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 48000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(43500000, 30671, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 
@@ -3087,316 +3767,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // UX DESIGNER
             if (job.equals("UX designer")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_UXd = dataSnapshot.child("Canada").child("UX designer").getValue(Double.class);
+                        double usa_UXd = dataSnapshot.child("United States").child("UX designer").getValue(Double.class);
+                        double mex_UXd = dataSnapshot.child("Mexico").child("UX designer").getValue(Double.class);
+                        double bra_UXd = dataSnapshot.child("Brazil").child("UX designer").getValue(Double.class);
+                        double ger_UXd = dataSnapshot.child("Germany").child("UX designer").getValue(Double.class);
+                        double jap_UXd = dataSnapshot.child("Japan").child("UX designer").getValue(Double.class);
+                        double nig_UXd = dataSnapshot.child("Nigeria").child("UX designer").getValue(Double.class);
+                        double pol_UXd = dataSnapshot.child("Poland").child("UX designer").getValue(Double.class);
+                        double eng_UXd = dataSnapshot.child("England").child("UX designer").getValue(Double.class);
+                        double kor_UXd = dataSnapshot.child("South Korea").child("UX designer").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UXd, usa_UXd, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, mex_UXd, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, bra_UXd, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UXd, ger_UXd, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, jap_UXd, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, nig_UXd, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, pol_UXd, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_UXd, eng_UXd, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_UXd, kor_UXd, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(58670, 73800, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 365000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 50229, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(58670, 51000, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 5000000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 2350000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 49000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(58670, 30758, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(58670, 44802800, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, can_UXd, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, mex_UXd, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, bra_UXd, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_UXd, ger_UXd, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, jap_UXd, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, nig_UXd, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, pol_UXd, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_UXd, eng_UXd, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_UXd, kor_UXd, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 58670, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 365000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 50229, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(73800, 51000, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 5000000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 2350000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 49000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(73800, 30758, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(73800, 44802800, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, usa_UXd, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, can_UXd, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, bra_UXd, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, ger_UXd, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UXd, jap_UXd, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UXd, nig_UXd, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, pol_UXd, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_UXd, eng_UXd, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_UXd, kor_UXd, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 73800, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 58670, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 50229, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 51000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(365000, 5000000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(365000, 2350000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 49000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(365000, 30758, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(365000, 44802800, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UXd, usa_UXd, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UXd, can_UXd, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UXd, mex_UXd, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UXd, ger_UXd, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UXd, jap_UXd, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UXd, nig_UXd, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UXd, pol_UXd, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_UXd, eng_UXd, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_UXd, kor_UXd, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50229, 73800, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50229, 58670, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50229, 365000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50229, 51000, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50229, 5000000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50229, 2350000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50229, 49000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(50229, 30758, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(50229, 44802800, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, usa_UXd, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, can_UXd, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, mex_UXd, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, bra_UXd, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, jap_UXd, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, nig_UXd, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, pol_UXd, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_UXd, eng_UXd, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_UXd, kor_UXd, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 73800, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 58670, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 365000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 50229, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 5000000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 2350000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 49000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(51000, 30758, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(51000, 44802800, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, usa_UXd, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, can_UXd, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, mex_UXd, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, bra_UXd, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, ger_UXd, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_UXd, nig_UXd, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, pol_UXd, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_UXd, eng_UXd, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_UXd, kor_UXd, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 73800, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 58670, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 365000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 50229, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 51000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(5000000, 2350000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 49000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(5000000, 30758, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(5000000, 44802800, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, usa_UXd, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, can_UXd, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, mex_UXd, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, bra_UXd, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, ger_UXd, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, jap_UXd, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, pol_UXd, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_UXd, eng_UXd, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_UXd, kor_UXd, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 73800, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 58670, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 365000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 50229, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 51000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 5000000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 49000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2350000, 30758, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(2350000, 44802800, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UXd, usa_UXd, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UXd, can_UXd, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UXd, mex_UXd, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UXd, bra_UXd, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UXd, ger_UXd, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UXd, jap_UXd, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UXd, nig_UXd, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_UXd, eng_UXd, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_UXd, kor_UXd, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49000, 73800, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49000, 58670, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49000, 365000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49000, 50229, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49000, 51000, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49000, 5000000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49000, 2350000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(49000, 30758, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(49000, 44802800, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, usa_UXd, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, can_UXd, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, mex_UXd, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, bra_UXd, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, ger_UXd, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, jap_UXd, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, nig_UXd, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, pol_UXd, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_UXd, kor_UXd, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 73800, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_UXd, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, usa_UXd, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_UXd, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, can_UXd, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_UXd, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, mex_UXd, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_UXd, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, bra_UXd, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_UXd, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, ger_UXd, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_UXd, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, jap_UXd, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_UXd, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, nig_UXd, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_UXd, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, pol_UXd, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_UXd, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_UXd, eng_UXd, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_UXd, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 58670, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 365000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 50229, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 51000, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 5000000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 2350000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 49000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(30758, 44802800, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 73800, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 58670, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 365000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 50229, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 51000, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 5000000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 2350000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 49000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(44802800, 30758, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
 
 
@@ -3405,316 +4201,432 @@ public class SalaryInfoActivity extends AppCompatActivity {
 
             // NETWORK ADMINISTRATOR
             if (job.equals("Network administrator")) {
+                mRootRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        double can_na = dataSnapshot.child("Canada").child("Network administrator").getValue(Double.class);
+                        double usa_na = dataSnapshot.child("United States").child("Network administrator").getValue(Double.class);
+                        double mex_na = dataSnapshot.child("Mexico").child("Network administrator").getValue(Double.class);
+                        double bra_na = dataSnapshot.child("Brazil").child("Network administrator").getValue(Double.class);
+                        double ger_na = dataSnapshot.child("Germany").child("Network administrator").getValue(Double.class);
+                        double jap_na = dataSnapshot.child("Japan").child("Network administrator").getValue(Double.class);
+                        double nig_na = dataSnapshot.child("Nigeria").child("Network administrator").getValue(Double.class);
+                        double pol_na = dataSnapshot.child("Poland").child("Network administrator").getValue(Double.class);
+                        double eng_na = dataSnapshot.child("England").child("Network administrator").getValue(Double.class);
+                        double kor_na = dataSnapshot.child("South Korea").child("Network administrator").getValue(Double.class);
+                        // CANADA AS THE HOME COUNTRY
+                        if (home.equals("Canada")) {
+                            mHc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_na, usa_na, rate.getRate(can_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, mex_na, rate.getRate(can_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, bra_na, rate.getRate(can_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_na, ger_na, rate.getRate(can_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, jap_na, rate.getRate(can_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, nig_na, rate.getRate(can_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, pol_na, rate.getRate(can_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(can_na, eng_na, rate.getRate(can_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(can_na, kor_na, rate.getRate(can_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // CANADA AS THE HOME COUNTRY
-                if (home.equals("Canada")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(56174, 56576, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 360000, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 80994, 2.41, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(56174, 55000, 1.52, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 6450000, 81.98, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 2000000, 233.40, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 60000, 2.75, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(56174, 20338, 1.74, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56174, 27785576, 829.34, home, remote));
-                    }
-                }
+                        // UNITED STATES AS THE HOME COUNTRY
+                        if (home.equals("United States")) {
+                            mHc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, can_na, rate.getRate(usa_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, mex_na, rate.getRate(usa_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, bra_na, rate.getRate(usa_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_na, ger_na, rate.getRate(usa_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, jap_na, rate.getRate(usa_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, nig_na, rate.getRate(usa_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, pol_na, rate.getRate(usa_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(usa_na, eng_na, rate.getRate(usa_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(usa_na, kor_na, rate.getRate(usa_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // UNITED STATES AS THE HOME COUNTRY
-                if (home.equals("United States")) {
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 56174, 1.35, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 360000, 18.68, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 80994, 3.25, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(56576, 55000, 1.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 6450000, 110.52, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 2000000, 314.75, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 60000, 3.71, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(56576, 20338, 1.29, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(56576, 27785576, 1118.40, home, remote));
-                    }
-                }
+                        // MEXICO AS THE HOME COUNTRY
+                        if (home.equals("Mexico")) {
+                            mHc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, usa_na, rate.getRate(mex_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, can_na, rate.getRate(mex_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, bra_na, rate.getRate(mex_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, ger_na, rate.getRate(mex_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_na, jap_na, rate.getRate(mex_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_na, nig_na, rate.getRate(mex_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, pol_na, rate.getRate(mex_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(mex_na, eng_na, rate.getRate(mex_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(mex_na, kor_na, rate.getRate(mex_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // MEXICO AS THE HOME COUNTRY
-                if (home.equals("Mexico")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 56576, 18.68, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 56174, 13.85, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 80994, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 55000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(360000, 6450000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(360000, 2000000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 60000, 5.05, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(360000, 20338, 24.11, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(360000, 27785576, 59.67, home, remote));
-                    }
-                }
+                        // BRAZIL AS THE HOME COUNTRY
+                        if (home.equals("Brazil")) {
+                            mHc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_na, usa_na, rate.getRate(bra_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_na, can_na, rate.getRate(bra_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_na, mex_na, rate.getRate(bra_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_na, ger_na, rate.getRate(bra_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_na, jap_na, rate.getRate(bra_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_na, nig_na, rate.getRate(bra_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_na, pol_na, rate.getRate(bra_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(bra_na, eng_na, rate.getRate(bra_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(bra_na, kor_na, rate.getRate(bra_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // BRAZIL AS THE HOME COUNTRY
-                if (home.equals("Brazil")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(80994, 56576, 3.25, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(80994, 56174, 2.41, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(80994, 360000, 5.75, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(80994, 55000, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(80994, 6450000, 34.00, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(80994, 2000000, 96.96, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(80994, 60000, 1.14, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(80994, 20338, 4.18, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(80994, 27785576, 344.29, home, remote));
-                    }
-                }
+                        // GERMANY AS THE HOME COUNTRY
+                        if (home.equals("Germany")) {
+                            mHc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, usa_na, rate.getRate(ger_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, can_na, rate.getRate(ger_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, mex_na, rate.getRate(ger_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, bra_na, rate.getRate(ger_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, jap_na, rate.getRate(ger_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, nig_na, rate.getRate(ger_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, pol_na, rate.getRate(ger_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(ger_na, eng_na, rate.getRate(ger_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(ger_na, kor_na, rate.getRate(ger_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // GERMANY AS THE HOME COUNTRY
-                if (home.equals("Germany")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 56576, 1.13, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 56174, 1.52, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 360000, 21.13, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 80994, 3.66, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 6450000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 2000000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 60000, 4.18, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(55000, 20338, 1.14, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(55000, 27785576, 1260.39, home, remote));
-                    }
-                }
+                        // JAPAN AS THE HOME COUNTRY
+                        if (home.equals("Japan")) {
+                            mHc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, usa_na, rate.getRate(jap_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, can_na, rate.getRate(jap_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, mex_na, rate.getRate(jap_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, bra_na, rate.getRate(jap_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, ger_na, rate.getRate(jap_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_na, nig_na, rate.getRate(jap_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, pol_na, rate.getRate(jap_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(jap_na, eng_na, rate.getRate(jap_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(jap_na, kor_na, rate.getRate(jap_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // JAPAN AS THE HOME COUNTRY
-                if (home.equals("Japan")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 56576, 110.52, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 56174, 81.98, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 360000, 5.89, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 80994, 34.00, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 55000, 124.49, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(6450000, 2000000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 60000, 29.74, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(6450000, 20338, 142.12, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(6450000, 27785576, 10.12, home, remote));
-                    }
-                }
+                        // NIGERIA AS THE HOME COUNTRY
+                        if (home.equals("Nigeria")) {
+                            mHc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, usa_na, rate.getRate(nig_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, can_na, rate.getRate(nig_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, mex_na, rate.getRate(nig_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, bra_na, rate.getRate(nig_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, ger_na, rate.getRate(nig_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, jap_na, rate.getRate(nig_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, pol_na, rate.getRate(nig_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(nig_na, eng_na, rate.getRate(nig_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(nig_na, kor_na, rate.getRate(nig_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // NIGERIA AS THE HOME COUNTRY
-                if (home.equals("Nigeria")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 56576, 314.75, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 56174, 233.40, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 360000, 16.80, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 80994, 96.96, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 55000, 354.90, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 6450000, 2.85, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 60000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(2000000, 20338, 404.99, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(2000000, 27785576, 3.55, home, remote));
-                    }
-                }
+                        // POLAND AS THE HOME COUNTRY
+                        if (home.equals("Poland")) {
+                            mHc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_na, usa_na, rate.getRate(pol_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_na, can_na, rate.getRate(pol_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_na, mex_na, rate.getRate(pol_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_na, bra_na, rate.getRate(pol_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_na, ger_na, rate.getRate(pol_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_na, jap_na, rate.getRate(pol_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_na, nig_na, rate.getRate(pol_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(pol_na, eng_na, rate.getRate(pol_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(pol_na, kor_na, rate.getRate(pol_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // POLAND AS THE HOME COUNTRY
-                if (home.equals("Poland")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60000, 56576, 3.71, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60000, 56174, 2.75, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60000, 360000, 5.05, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60000, 80994, 1.14, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60000, 55000, 4.18, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60000, 6450000, 29.74, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60000, 2000000, 84.80, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(60000, 20338, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(60000, 27785576, 301.16, home, remote));
-                    }
-                }
+                        // ENGLAND AS THE HOME COUNTRY
+                        if (home.equals("England")) {
+                            mHc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, usa_na, rate.getRate(eng_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, can_na, rate.getRate(eng_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, mex_na, rate.getRate(eng_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, bra_na, rate.getRate(eng_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, ger_na, rate.getRate(eng_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, jap_na, rate.getRate(eng_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, nig_na, rate.getRate(eng_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, pol_na, rate.getRate(eng_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("South Korea")) {
+                                mPercent.setText(percent.difference_home_more_valuable(eng_na, kor_na, rate.getRate(eng_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            }
+                        }
 
-                // ENGLAND AS THE HOME COUNTRY
-                if (home.equals("England")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 56576, 1.29, home, remote));
+                        // SOUTH KOREA AS THE HOME COUNTRY
+                        if (home.equals("South Korea")) {
+                            mHc_salary.setText(avg_salary.averageSalary(kor_na, KRW));
+                            if (remote.equals("United States")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, usa_na, rate.getRate(kor_rates[0]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(usa_na, USD));
+                            }
+                            if (remote.equals("Canada")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, can_na, rate.getRate(kor_rates[1]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(can_na, CAD));
+                            }
+                            if (remote.equals("Mexico")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, mex_na, rate.getRate(kor_rates[2]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(mex_na, MXN));
+                            }
+                            if (remote.equals("Brazil")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, bra_na, rate.getRate(kor_rates[3]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(bra_na, BRL));
+                            }
+                            if (remote.equals("Germany")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, ger_na, rate.getRate(kor_rates[4]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(ger_na, EUR));
+                            }
+                            if (remote.equals("Japan")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, jap_na, rate.getRate(kor_rates[5]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(jap_na, JPY));
+                            }
+                            if (remote.equals("Nigeria")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, nig_na, rate.getRate(kor_rates[6]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(nig_na, NGN));
+                            }
+                            if (remote.equals("Poland")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, pol_na, rate.getRate(kor_rates[7]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(pol_na, PLN));
+                            }
+                            if (remote.equals("England")) {
+                                mPercent.setText(percent.difference_remote_more_valuable(kor_na, eng_na, rate.getRate(kor_rates[8]), home, remote));
+                                mRc_salary.setText(avg_salary.averageSalary(eng_na, GBP));
+                            }
+                        }
                     }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 56174, 1.74, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 360000, 24.11, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 80994, 4.18, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 55000, 1.14, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 6450000, 142.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 2000000, 404.99, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 60000, 4.78, home, remote));
-                    }
-                    if (remote.equals("South Korea")) {
-                        mPercent.setText(percent.difference_home_more_valuable(20338, 27785576, 1438.08, home, remote));
-                    }
-                }
-
-                // SOUTH KOREA AS THE HOME COUNTRY
-                if (home.equals("South Korea")) {
-                    if (remote.equals("United States")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 56576, 1118.40, home, remote));
-                    }
-                    if (remote.equals("Canada")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 56174, 829.34, home, remote));
-                    }
-                    if (remote.equals("Mexico")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 360000, 59.67, home, remote));
-                    }
-                    if (remote.equals("Brazil")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 80994, 344.29, home, remote));
-                    }
-                    if (remote.equals("Germany")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 55000, 1260.39, home, remote));
-                    }
-                    if (remote.equals("Japan")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 6450000, 10.12, home, remote));
-                    }
-                    if (remote.equals("Nigeria")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 2000000, 3.55, home, remote));
-                    }
-                    if (remote.equals("Poland")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 60000, 301.16, home, remote));
-                    }
-                    if (remote.equals("England")) {
-                        mPercent.setText(percent.difference_remote_more_valuable(27785576, 20338, 1438.08, home, remote));
-                    }
-                }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
             }
         }
 }

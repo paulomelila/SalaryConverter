@@ -19,6 +19,8 @@ public class SalaryInfoActivity extends AppCompatActivity {
     private Salary percent = new Salary();
     private Salary avg_salary = new Salary();
     private Salary rate = new Salary();
+
+    // Currencies codes
     private final String CAD = "CAD";
     private final String USD = "USD";
     private final String MXN = "MXN";
@@ -38,7 +40,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         // Getting a reference to the root element of the database
         final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
-        // Getting the content of the string arrays for conversion rates
+        // Getting the content of the string arrays for conversion rates stored in rates.xml
         final String[] can_rates = getResources().getStringArray(R.array.canada_rates);
         final String[] usa_rates = getResources().getStringArray(R.array.usa_rates);
         final String[] mex_rates = getResources().getStringArray(R.array.mexico_rates);
@@ -50,7 +52,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         final String[] eng_rates = getResources().getStringArray(R.array.england_rates);
         final String[] kor_rates = getResources().getStringArray(R.array.south_korea_rates);
 
-        // Widgets
+        // All widgets used in this activity
         ImageView home_country_flag = (ImageView) findViewById(R.id.home_country_flag);
         ImageView remote_country_flag = (ImageView) findViewById(R.id.remote_country_flag);
         ImageView hc_flag_salary = (ImageView) findViewById(R.id.hc_flag_salary);
@@ -63,7 +65,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         final TextView mHc_salary = (TextView) findViewById(R.id.homeCountryAverageSalary);
         final TextView mRc_salary = (TextView) findViewById(R.id.remoteCountryAverageSalary);
 
-        // Roboto typefaces
+        // Applying Roboto typefaces to the TextViews
         Typeface roboto_regular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface roboto_italic = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Italic.ttf");
         Typeface roboto_bold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
@@ -79,6 +81,7 @@ public class SalaryInfoActivity extends AppCompatActivity {
         Intent receiver = getIntent();
         Bundle b = receiver.getExtras();
 
+        // Getting the extras from the intent
         final String home = b.getString("Home country");
         final String job = b.getString("Job");
         final String remote = b.getString("Remote country");
@@ -129,9 +132,9 @@ public class SalaryInfoActivity extends AppCompatActivity {
             }
         }
 
-        // CONVERSION RATE TEXT
+        // Setting the conversion rate text
         if (home.equals("United States") && remote.equals("Canada") || home.equals("Canada") && remote.equals("United States")) {
-            mRateText.setText(" 1 " + USD + " = " + can_rates[0] + " " + CAD);
+            mRateText.setText(" 1 " + USD + " = " + usa_rates[0] + " " + CAD);
         }
         if (home.equals("United States") && remote.equals("Mexico") || home.equals("Mexico") && remote.equals("United States")) {
             mRateText.setText(" 1 " + USD + " = " + usa_rates[1] + " " + MXN);
@@ -158,8 +161,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + USD + " = " + usa_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Canada") && remote.equals("Mexico") || home.equals("Mexico") && remote.equals("Canada")) {
             mRateText.setText(" 1 " + CAD + " = " + can_rates[1] + " " + MXN);
         }
@@ -185,8 +186,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + CAD + " = " + can_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Mexico") && remote.equals("Brazil") || home.equals("Brazil") && remote.equals("Mexico")) {
             mRateText.setText(" 1 " + BRL + " = " + mex_rates[2] + " " + MXN);
         }
@@ -209,8 +208,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + MXN + " = " + mex_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Brazil") && remote.equals("Germany") || home.equals("Germany") && remote.equals("Brazil")) {
             mRateText.setText(" 1 " + EUR + " = " + bra_rates[3] + " " + BRL);
         }
@@ -230,8 +227,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + BRL + " = " + bra_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Germany") && remote.equals("Japan") || home.equals("Japan") && remote.equals("Germany")) {
             mRateText.setText(" 1 " + EUR + " = " + ger_rates[4] + " " + JPY);
         }
@@ -248,8 +243,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + EUR + " = " + ger_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Japan") && remote.equals("Nigeria") || home.equals("Nigeria") && remote.equals("Japan")) {
             mRateText.setText(" 1 " + JPY + " = " + jap_rates[5] + " " + NGN);
         }
@@ -263,8 +256,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + JPY + " = " + jap_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Nigeria") && remote.equals("Poland") || home.equals("Poland") && remote.equals("Nigeria")) {
             mRateText.setText(" 1 " + PLN + " = " + nig_rates[6] + " " + NGN);
         }
@@ -275,8 +266,6 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + NGN + " = " + nig_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("Poland") && remote.equals("England") || home.equals("England") && remote.equals("Poland")) {
             mRateText.setText(" 1 " + GBP + " = " + pol_rates[7] + " " + PLN);
         }
@@ -284,14 +273,12 @@ public class SalaryInfoActivity extends AppCompatActivity {
             mRateText.setText(" 1 " + PLN + " = " + pol_rates[8] + " " + KRW);
         }
 
-
-
         if (home.equals("England") && remote.equals("South Korea") || home.equals("South Korea") && remote.equals("England")) {
             mRateText.setText(" 1 " + GBP + " = " + eng_rates[8] + " " + KRW);
         }
 
-
-// SETTING THE PERCENT DIFFERENCE TEXT
+// Getting the average salaries from the database, so we can set the percent difference,
+// home country salary and remote country salary texts.
 
         // SOFTWARE ENGINEER
         if (job.equals("Software engineer")) {

@@ -13,6 +13,7 @@
         <!--//-USD-PLN--><item>3.71</item>
         <!--//-GBP-USD--><item>1.29</item>
         <!--//-USD-KRW--><item>1118.40</item>
+
     </string-array>
 
     <string-array name="canada_rates">

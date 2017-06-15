@@ -20,7 +20,7 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        // Instantiating the string arrays for each Spinner
+        // Getting the content the string arrays that are stored in strings.xml
         final String[] hc_array = getResources().getStringArray(R.array.home_countries_array);
         final String[] j_array = getResources().getStringArray(R.array.job_array);
         final String[] rc_array = getResources().getStringArray(R.array.remote_countries_array);
@@ -70,20 +70,26 @@ public class MainPageActivity extends AppCompatActivity {
         mConvertImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Getting the selected items chosen by the user.
                 final String hc = home_country.getSelectedItem().toString();
                 final String j = job.getSelectedItem().toString();
                 final String rc = remote_country.getSelectedItem().toString();
 
+                // If any of the options are not chosen, display an error message.
                 if (hc.equals(hc_array[0]) || j.equals(j_array[0]) || rc.equals(rc_array[0])) {
                     mErrorText.setVisibility(View.VISIBLE);
                     mErrorText.setText(R.string.error_message);
                 }
 
                 else {
+                    // if the chosen home country and remote country are the same, display an error message
                     if (hc.equals(rc)) {
                         mErrorText.setVisibility(View.VISIBLE);
                         mErrorText.setText(R.string.error_same_hc_rc);
                     } else {
+                        // if the user chooses all options and set different countries
+                        // for home and remote countries, start the animation
                         mErrorText.setVisibility(View.INVISIBLE);
                         RotateAnimation rotate = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF,
                                 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
@@ -94,14 +100,12 @@ public class MainPageActivity extends AppCompatActivity {
                         // after rotating start SalaryInfoActivity
                         rotate.setAnimationListener(new Animation.AnimationListener() {
                             @Override
-                            public void onAnimationStart(Animation animation) {
-                                // not needed
-                            }
+                            public void onAnimationStart(Animation animation) {}
 
                             @Override
                             public void onAnimationEnd(Animation animation) {
-                                // Creating an intent to start SalaryInfoActivity and send the user's
-                                // choices to the next page.
+                                // After the animation ends, create an intent to start SalaryInfoActivity
+                                // and send the user's choices to the next page as extras.
                                 Intent salary_info = new Intent(MainPageActivity.this, SalaryInfoActivity.class);
                                 salary_info.putExtra("Home country", hc);
                                 salary_info.putExtra("Job", j);
@@ -110,9 +114,7 @@ public class MainPageActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onAnimationRepeat(Animation animation) {
-                                // not needed
-                            }
+                            public void onAnimationRepeat(Animation animation) {}
                         });
                     }
                 }

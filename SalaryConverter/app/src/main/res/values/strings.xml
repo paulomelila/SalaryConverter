@@ -2,9 +2,8 @@
     <string name="app_name">Salary Converter</string>
     <string name="error_message">Please select all options to proceed.</string>
     <string name="error_same_hc_rc">Your home country and remote country can\'t be the same.</string>
-    <string name="cad"> CAD</string>
 
-<!--//HOME COUNTRY OPTIONS-->
+<!--//HOME COUNTRY SPINNER OPTIONS-->
     <string-array name="home_countries_array">
         <item>Select your home country</item>
         <item>Canada</item>
@@ -19,7 +18,7 @@
         <item>South Korea</item>
     </string-array>
 
-<!--//JOB OPTIONS-->
+<!--//JOB SPINNER OPTIONS-->
     <string-array name="job_array">
         <item>Select your job</item>
         <item>Software engineer</item>
@@ -34,7 +33,7 @@
         <item>Network administrator</item>
     </string-array>
 
-<!--//REMOTE COUNTRY OPTIONS-->
+<!--//REMOTE COUNTRY SPINNER OPTIONS-->
     <string-array name="remote_countries_array">
         <item>Select your remote job location</item>
         <item>Canada</item>

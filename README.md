@@ -1,3 +1,5 @@
+![UI](https://raw.githubusercontent.com/paulomelila/SalaryConverter/master/readme_img/SaralyConverter.gif)
+
 Document ▼
 https://goo.gl/gfOM4Z
 
